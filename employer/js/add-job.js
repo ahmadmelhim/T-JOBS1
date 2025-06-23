@@ -36,19 +36,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const dateTime = new Date(dateValue).toISOString();
         formData.append("DateTime", dateTime);
 
-        // أضف RequestTypeId - عدّل الرقم حسب نوع الطلب المناسب لك
-        formData.append("RequestTypeId", "1");
+        formData.append("RequestTypeId", "1"); // عدل الرقم إذا لزم
 
         const mainImgFile = document.getElementById("mainImg").files[0];
         if (mainImgFile) {
             formData.append("MainImg", mainImgFile);
         }
 
-        // قراءة التوكن من localStorage
+        // قراءة التوكن
         const token = localStorage.getItem("token");
         if (!token) {
             showToast("error", "الرجاء تسجيل الدخول أولاً");
             return;
+        }
+
+        // 🟢 طباعة محتوى البيانات
+        console.log("📤 إرسال البيانات إلى API:");
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}:`, pair[1]);
         }
 
         try {
@@ -56,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`
-                    // لا تضف Content-Type لأن FormData يحددها تلقائياً
                 },
                 body: formData
             });
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 2000);
             } else {
                 const errorText = await response.text();
-                console.error("Error response:", errorText);
+                console.error("خطأ:", errorText);
                 showToast("error", `فشل في نشر العمل: ${errorText || response.statusText}`);
             }
         } catch (error) {
