@@ -1,0 +1,40 @@
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  .card {
+    transition: all 0.3s ease;
+  }
+  .navbar-brand img{
+    max-width: 120px;
+  }
+  .features-section-card .section-card{
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+  }
+
+  .imag-sec img{
+    height: 600px;
+    object-fit: cover; 
+    opacity: 0.25;
+  }
+  #sidebarMenu{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 260px;
+    z-index: 9;
+  }
+  #Body{
+    margin-right: 260px;
+  }
+  #toggleMenu{
+    position: fixed;
+    top: 2px;
+    right: 5px;
+    z-index: 99;
+  }

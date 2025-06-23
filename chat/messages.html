@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>المحادثات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assert/css/base.css">
+  <link rel="stylesheet" href="../assert/css/main.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white fixed-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assert/image/logo.png" alt="شعار الموقع" class="img-fluid" >
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item"><a class="nav-link" href="./messages.html"><i class="fa-solid fa-message"></i> المحادثات </a></li>
+        <li class="nav-item"><a class="nav-link" href="./chatbot.html"><i class="fa-solid fa-robot"></i> الشات بوت</a></li>
+        <li class="nav-item"><a class="nav-link" href="./notifications.html"><i class="fa-solid fa-bell"></i> الإشعارات</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- محتوى الصفحة -->
+<div class="container-fluid pt-5 mt-5">
+  <div class="row g-0 shadow mx-3 rounded overflow-hidden" style="height: calc(100vh - 120px);">
+
+    <!-- القائمة الجانبية للمحادثات -->
+    <div class="col-md-4 col-lg-3 bg-white border-end d-flex flex-column">
+      <div class="p-3 border-bottom text-center">
+        <h4 class="fw-bold text-primary mb-0">محادثاتي</h4>
+      </div>
+      <ul class="list-unstyled flex-grow-1 overflow-auto">
+        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
+          <div class="flex-grow-1">
+            <h6 class="mb-0 fw-semibold">احمد علي</h6>
+          </div>
+        </li>
+        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
+          <img src="https://randomuser.me/api/portraits/men/30.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
+          <div class="flex-grow-1">
+            <h6 class="mb-0 fw-semibold">محمد علي</h6>
+          </div>
+        </li>
+        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
+          <img src="https://randomuser.me/api/portraits/men/39.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
+          <div class="flex-grow-1">
+            <h6 class="mb-0 fw-semibold">خالد محمود</h6>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- نافذة المحادثة -->
+    <div class="col-md-8 col-lg-9 d-flex flex-column bg-light">
+      <div class="p-3 bg-primary text-white d-flex align-items-center">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3 border border-2" width="40" height="40">
+        <h5 class="mb-0 fw-bold">احمد علي</h5>
+      </div>
+      <div class="p-3 overflow-auto flex-grow-1">
+        <div class="d-flex justify-content-start mb-3">
+          <div class="bg-white rounded shadow-sm p-2 px-3 ">مرحبًا، هل أنت متاح للعمل الآن؟</div>
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+          <div class="bg-success text-white rounded shadow-sm p-2 px-3">نعم، أنا متاح ويمكنني البدء فورًا.</div>
+        </div>
+        <div class="d-flex justify-content-start mb-3">
+          <div class="bg-white rounded shadow-sm p-2 px-3 ">رائع، سنبدأ في الساعة 10 صباحًا.</div>
+        </div>
+      </div>
+      <form class="border-top bg-white p-3">
+        <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 rounded-pill ps-3" placeholder="اكتب رسالتك..." required>
+          <button type="submit" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center ms-2">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- الفوتر -->
+<footer class="bg-secColor pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row text-center text-md-start align-items-center justify-content-between">
+      <div class="col-12 col-md-4 mb-3 mb-md-0">
+        <img src="../assert/image/logo.png" class="img-fluid w-50" alt="شعار">
+      </div>
+      <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
+        <p class="mb-0">رقم التواصل<br>0595569887</p>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+    <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

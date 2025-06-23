@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --mainColor:#fff ;
+    --secColor:#b9b9b9b7;
+    --blueColor:#009FE3;
+    --mainfont: 'Noto Sans Arabic', sans-serif;
+}
+body{
+    font-family: var(--mainfont);
+}
+.bg-mainColor{
+    background-color: #fff;
+}
+.bg-secColor{
+    background-color: #b9b9b9;
+}
+.bg-blueColor{
+    background-color: #009FE3;
+}
+.mt-10{
+    margin-top: 80px;
+}
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
