@@ -11,84 +11,71 @@
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-mainColor fixed-top">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand" href="./index.html">
-      <img src="../assert/image/logo.png"  alt="شعار الموقع">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto gap-2">
-        <li class="nav-item"><a class="nav-link" href="../jobs.html"><i class="fa-solid fa-briefcase"></i> الوظائف </a></li>
-        <li class="nav-item"><a class="nav-link" href="../login.html"><i class="fa-solid fa-right-to-bracket"></i> تسجيل دخول</a></li>
-        <li class="nav-item"><a class="nav-link" href="../register.html"><i class="fa-solid fa-user-plus"></i> إنشاء حساب</a></li>
-      </ul>
+<nav  class="bg-mainColor shadow fixed-top"> 
+    <div id="navbar" class="container">
+      
     </div>
-  </div>
-</nav>
-<div class="container my-5">
+  </nav>
+
+<div class="container my-5 pt-5">
   <div class="mx-auto p-4 p-md-5 rounded-4">
-    <!-- معلومات الناشر -->
     <h4 class="mb-5 text-center text-black">
       <i class="fas fa-briefcase me-2"></i> تفاصيل الوظيفة
     </h4>
 
     <div class="text-center mb-4">
-      <img src="../assert/image/original.avif" alt="صورة العمل" class="img-fluid rounded shadow" style="max-height: 350px; width: 500px;">
+      <img id="jobImage" src="../assert/image/original.avif" alt="صورة العمل" class="img-fluid rounded shadow" style="max-height: 350px; width: 500px;">
     </div>
 
     <div class="mb-3">
       <strong>عنوان العمل:</strong>
-      <p class="text-black-50">تركيب دهان</p>
+      <p id="jobTitle" class="text-black-50"></p>
     </div>
 
     <div class="mb-3">
       <strong>تفاصيل العمل:</strong>
-      <p class="text-black-50">مطلوب تنفيذ دهان واجهة محل بمساحة 50 متر. يشترط الدقة والالتزام بالوقت.</p>
+      <p id="jobDescription" class="text-black-50"></p>
     </div>
 
     <div class="row">
       <div class="col-md-6 mb-3">
         <strong><i class="fa-solid fa-location-dot me-2 text-secondary"></i>الموقع:</strong>
-        <p class="text-black-50">جنين - قباطية</p>
+        <p id="jobLocation" class="text-black-50"></p>
       </div>
       <div class="col-md-6 mb-3">
         <strong><i class="fa-solid fa-calendar-days me-2 text-secondary"></i>تاريخ التنفيذ:</strong>
-        <p class="text-black-50">2025-06-10</p>
+        <p id="jobDate" class="text-black-50"></p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6 mb-3">
         <strong><i class="fa-solid fa-money-bill-wave me-2 text-secondary"></i>الأجرة:</strong>
-        <p class="text-black-50">150 شيقل / يوم</p>
+        <p id="jobPrice" class="text-black-50"></p>
       </div>
       <div class="col-md-6 mb-3">
         <strong><i class="fa-solid fa-screwdriver-wrench me-2 text-secondary"></i>نوع العمل:</strong>
-        <p class="text-black-50">دهان</p>
+        <p id="jobType" class="text-black-50"></p>
       </div>
     </div>
-    
+
     <div class="d-flex flex-column flex-md-row gap-3 mt-4">
       <a href="../chat/messages.html" class="btn btn-outline-primary w-100">
-        <i class="fa-solid fa-message me-2"></i>ارسل للتفاوض
+        <i class="fa-solid fa-message me-2"></i> ارسل للتفاوض
       </a>
       <button class="btn btn-outline-primary w-100">
-        <i class="fa-solid fa-paper-plane me-2"></i>تقديم على الوظيفة
+        <i class="fa-solid fa-paper-plane me-2"></i> تقديم على الوظيفة
       </button>
     </div>
   </div>
 </div>
+
 <footer class="footer bg-secColor pt-5 pb-3">
   <div class="container">
     <div class="row text-center text-md-start align-items-center justify-content-between">
-      <!-- قسم الصورة -->
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <img src="../assert/image/logo.png" class="w-50" alt="شعار">
       </div>
-      <!-- قسم رقم التواصل -->
       <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
         <p class="mb-0">رقم التواصل<br>0595569887</p>
       </div>
@@ -105,5 +92,9 @@
     <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
   </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../assert/js/navbar.js"></script>
+<script src="../worker/js/worker-job-details.js"></script>
 </body>
 </html>

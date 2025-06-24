@@ -14,7 +14,7 @@ if (userType === "superadmin") {
 let navbarHTML = `
   <div class="container-fluid px-4 py-2 d-flex justify-content-between align-items-center">
     <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html">
-      <img src="./assert/image/logo.png" alt="شعار الموقع" height="40" />
+      <img src="../assert/image/logo.png" alt="شعار الموقع" height="40" />
     </a>
 
     ${userType === null

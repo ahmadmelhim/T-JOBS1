@@ -43,15 +43,12 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
           userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
           console.log("User Role:", userRole);
 
-          // حفظ نوع المستخدم والدور في localStorage
           localStorage.setItem("userType", userRole.toLowerCase());
           localStorage.setItem("userRole", userRole);
 
-          // استخراج اسم المستخدم من التوكن (unique_name أو name)
           const userNameFromToken =
-            decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || // أحيانًا الاسم هنا
-            decodedToken["name"]  // أو هنا
-            ;
+            decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] ||
+            decodedToken["name"];
           localStorage.setItem("userName", userNameFromToken);
 
         } catch (jwtError) {
@@ -59,7 +56,6 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
         }
       }
 
-      // توجيه حسب الدور
       if (userRole === "Worker") {
         redirectPage = "index.html";
       } else if (userRole === "Employer") {
@@ -74,12 +70,23 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 
     } else {
       const result = await response.json();
+
       if (Array.isArray(result)) {
-        result.forEach(err => {
-          showToast("error", err.description || "خطأ في البيانات");
+        const messages = result.map(err => {
+          if (typeof err === "string" && err.includes("confirm your email")) {
+            return "الرجاء تأكيد البريد الإلكتروني قبل تسجيل الدخول.";
+          }
+          return err.description || err.message || JSON.stringify(err);
         });
+        messages.forEach(msg => showToast("error", msg));
       } else if (result.message) {
-        showToast("error", result.message);
+        if (result.message.includes("confirm your email")) {
+          showToast("error", "الرجاء تأكيد البريد الإلكتروني قبل تسجيل الدخول.");
+        } else {
+          showToast("error", result.message);
+        }
+      } else if (result.Error && Array.isArray(result.Error) && result.Error.includes("Please confirm your email!")) {
+        showToast("error", "الرجاء تأكيد البريد الإلكتروني قبل تسجيل الدخول.");
       } else {
         showToast("error", "فشل تسجيل الدخول. تأكد من صحة البريد وكلمة المرور.");
       }
