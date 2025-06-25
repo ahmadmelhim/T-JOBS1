@@ -17,10 +17,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const job = await res.json();
 
-    // تجربة صورة من الإنترنت فقط للاختبار
-    const imgPath = "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600";
+    // مسار الصورة
+    let imgPath = "../assert/image/original.avif"; // مسار بديل في حال عدم وجود صورة
 
+    if (job.mainImg) {
+      const match = job.mainImg.match(/images[\\/](.*\.jpg)/i);
+      if (match && match[1]) {
+        imgPath = `http://tjob.tryasp.net/images/${match[1]}`;
+      }
+    }
+
+    // تعبئة البيانات في الصفحة
     document.getElementById("jobImage").src = imgPath;
+    document.getElementById("modalFullImage").src = imgPath;
     document.getElementById("jobTitle").textContent = job.title;
     document.getElementById("jobDescription").textContent = job.description;
     document.getElementById("jobLocation").textContent = `${job.city} - ${job.street}`;

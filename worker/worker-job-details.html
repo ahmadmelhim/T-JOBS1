@@ -11,66 +11,74 @@
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
 <body>
-<nav  class="bg-mainColor shadow fixed-top"> 
-    <div id="navbar" class="container">
-      
-    </div>
-  </nav>
+
+<nav class="bg-mainColor shadow fixed-top"> 
+  <div id="navbar" class="container"></div>
+</nav>
 
 <div class="container my-5 pt-5">
   <div class="mx-auto p-4 p-md-5 rounded-4">
-    <h4 class="mb-5 text-center text-black">
-      <i class="fas fa-briefcase me-2"></i> تفاصيل الوظيفة
+    <h4 class="mb-5 text-center fw-bold fs-3 ">
+      <i class="fas fa-briefcase me-2 "></i> تفاصيل الوظيفة
     </h4>
 
-    <div class="text-center mb-4">
-      <img id="jobImage" src="../assert/image/original.avif" alt="صورة العمل" class="img-fluid rounded shadow" style="max-height: 350px; width: 500px;">
-    </div>
+    <div class="text-center mb-5">
+    <img id="jobImage" src="../assert/image/original.avif" alt="صورة العمل" class="img-fluid rounded-4 shadow-sm" style="max-height: 350px; width: 100%; object-fit: cover; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal">    </div>
 
-    <div class="mb-3">
-      <strong>عنوان العمل:</strong>
-      <p id="jobTitle" class="text-black-50"></p>
-    </div>
-
-    <div class="mb-3">
-      <strong>تفاصيل العمل:</strong>
-      <p id="jobDescription" class="text-black-50"></p>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <strong><i class="fa-solid fa-location-dot me-2 text-secondary"></i>الموقع:</strong>
-        <p id="jobLocation" class="text-black-50"></p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong>عنوان العمل:</strong>
+          <p id="jobTitle" class="text-black-50 mb-0"></p>
+        </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <strong><i class="fa-solid fa-calendar-days me-2 text-secondary"></i>تاريخ التنفيذ:</strong>
-        <p id="jobDate" class="text-black-50"></p>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong>تفاصيل العمل:</strong>
+          <p id="jobDescription" class="text-black-50 mb-0"></p>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <strong><i class="fa-solid fa-money-bill-wave me-2 text-secondary"></i>الأجرة:</strong>
-        <p id="jobPrice" class="text-black-50"></p>
+    <div class="row g-4 mt-3">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong><i class="fa-solid fa-location-dot me-2 text-secondary"></i>الموقع:</strong>
+          <p id="jobLocation" class="text-black-50 mb-0"></p>
+        </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <strong><i class="fa-solid fa-screwdriver-wrench me-2 text-secondary"></i>نوع العمل:</strong>
-        <p id="jobType" class="text-black-50"></p>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong><i class="fa-solid fa-calendar-days me-2 text-secondary"></i>تاريخ التنفيذ:</strong>
+          <p id="jobDate" class="text-black-50 mb-0"></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong><i class="fa-solid fa-money-bill-wave me-2 text-secondary"></i>الأجرة:</strong>
+          <p id="jobPrice" class="text-black-50 mb-0"></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <strong><i class="fa-solid fa-screwdriver-wrench me-2 text-secondary"></i>نوع العمل:</strong>
+          <p id="jobType" class="text-black-50 mb-0"></p>
+        </div>
       </div>
     </div>
 
-    <div class="d-flex flex-column flex-md-row gap-3 mt-4">
-      <a href="../chat/messages.html" class="btn btn-outline-primary w-100">
+    <div class="d-flex flex-column flex-md-row gap-3 mt-5">
+      <a href="../chat/messages.html" class="btn btn-outline-primary w-100 rounded-3 shadow-sm">
         <i class="fa-solid fa-message me-2"></i> ارسل للتفاوض
       </a>
-      <button class="btn btn-outline-primary w-100">
+      <button class="btn btn-primary w-100 rounded-3 shadow-sm">
         <i class="fa-solid fa-paper-plane me-2"></i> تقديم على الوظيفة
       </button>
     </div>
   </div>
 </div>
 
-<footer class="footer bg-secColor pt-5 pb-3">
+<footer class="footer bg-secColor pt-5 pb-3 mt-5">
   <div class="container">
     <div class="row text-center text-md-start align-items-center justify-content-between">
       <div class="col-12 col-md-4 mb-3 mb-md-0">
@@ -81,10 +89,10 @@
       </div>
       <div class="col-12 col-md-4">
         <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
-          <a href=""><i class="fa-brands fa-facebook"></i></a>
-          <a href=""><i class="fa-brands fa-twitter"></i></a>
-          <a href=""><i class="fa-brands fa-instagram"></i></a>
-          <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
     </div>
@@ -92,9 +100,21 @@
     <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
   </div>
 </footer>
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0">
+      <div class="modal-body p-0">
+        <img id="modalFullImage" src="" alt="صورة كاملة" class="img-fluid w-100 rounded">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="../assert/js/navbar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../assert/js/navbar.js"></script>
 <script src="../worker/js/worker-job-details.js"></script>
+
 </body>
 </html>

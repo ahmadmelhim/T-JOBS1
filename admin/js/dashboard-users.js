@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.getElementById("users-table-body");
+  const token = localStorage.getItem("token");
 
-  // دالة عرض التوست
   function showToast(icon, message) {
     Swal.fire({
       toast: true,
@@ -9,14 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
-      icon: icon,
+      icon,
       title: message
     });
   }
 
   async function fetchUsers() {
     try {
-      const response = await fetch("http://tjob.tryasp.net/api/Admin/Users");
+      const response = await fetch("http://tjob.tryasp.net/api/Admin/Users", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
       if (!response.ok) throw new Error("فشل في جلب المستخدمين");
 
       const users = await response.json();
@@ -26,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const fullName = `${user.firstName || ""} ${user.lastName || ""}`.trim();
         const role = user.roles?.[0] || "غير محدد";
         const isBanned = user.isBanned ?? false;
-        const userId = user.id;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -35,12 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <td class="text-black-50">${user.email}</td>
           <td class="text-black-50">${role}</td>
           <td>
-            <span class="badge ${isBanned ? "bg-danger" : "bg-success"}">
+            <span class="badge ${isBanned ? "bg-danger" : "bg-success"} status-badge">
               ${isBanned ? "محظور" : "نشط"}
             </span>
           </td>
           <td>
-            <button class="btn btn-sm ${isBanned ? "btn-success" : "btn-danger"} toggle-lock-btn" data-id="${userId}">
+            <button class="btn btn-sm ${isBanned ? "btn-success" : "btn-danger"} toggle-lock-btn" data-id="${user.id}" data-role="${role}">
               ${isBanned ? "إلغاء الحظر" : "حظر"}
             </button>
           </td>
@@ -51,19 +53,47 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".toggle-lock-btn").forEach(button => {
         button.addEventListener("click", async () => {
           const userId = button.getAttribute("data-id");
-          if (!userId) {
-            showToast("error", "لا يوجد معرف للمستخدم");
+          const role = button.getAttribute("data-role");
+
+          if (role === "Admin" || role === "Super Admin") {
+            showToast("warning", "لا يمكن حظر هذا المستخدم");
             return;
           }
 
+          const confirmResult = await Swal.fire({
+            title: "هل أنت متأكد؟",
+            text: "سيتم تغيير حالة المستخدم",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "نعم",
+            cancelButtonText: "إلغاء"
+          });
+
+          if (!confirmResult.isConfirmed) return;
+
           try {
             const res = await fetch(`http://tjob.tryasp.net/api/Admin/Users/LockUnLock/${userId}`, {
-              method: "PATCH"
+              method: "PATCH",
+              headers: { Authorization: `Bearer ${token}` }
             });
 
             if (res.ok) {
               showToast("success", "تم تنفيذ العملية بنجاح");
-              fetchUsers();
+
+              // تحديث الحالة في نفس الصف مباشرةً
+              const row = button.closest("tr");
+              const badge = row.querySelector(".status-badge");
+              const wasBanned = badge.classList.contains("bg-danger");
+
+              // تحديث الشارة
+              badge.classList.remove("bg-danger", "bg-success");
+              badge.classList.add(wasBanned ? "bg-success" : "bg-danger");
+              badge.textContent = wasBanned ? "نشط" : "محظور";
+
+              // تحديث الزر
+              button.classList.remove("btn-danger", "btn-success");
+              button.classList.add(wasBanned ? "btn-danger" : "btn-success");
+              button.textContent = wasBanned ? "حظر" : "إلغاء الحظر";
             } else {
               showToast("error", "فشل تنفيذ الإجراء");
             }

@@ -16,7 +16,7 @@
   <div class="container-fluid">
     <div>
       <!-- الشريط الجانبي -->
-<div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
           <div class="mb-4 w-100 text-center">
             <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
@@ -59,11 +59,11 @@
               </a>
             </li>
             <li class="nav-item w-100">
-            <a href="./accepted-workers.html" class="nav-link text-black w-100 ">
-              <i class="fa-solid fa-folder-open me-2"></i>
-              <span class="d-none d-sm-inline">سجل المشاريع</span>
-            </a>
-             </li>
+              <a href="./accepted-workers.html" class="nav-link text-black w-100 ">
+                <i class="fa-solid fa-folder-open me-2"></i>
+                <span class="d-none d-sm-inline">سجل المشاريع</span>
+              </a>
+            </li>
             <li class="nav-item mt-4 w-100">
               <a href="../index.html" class="nav-link text-black w-100 fw-bold">
                 <i class="fa-solid fa-globe me-2"></i>
@@ -71,7 +71,7 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div>
       </div>
 
       <!-- محتوى لوحة التحكم -->
@@ -86,7 +86,7 @@
                 <div class="card-body">
                   <i class="fas fa-briefcase fa-2x mb-2"></i>
                   <h5 class="card-title mt-2 ">الوظائف المنشورة</h5>
-                  <h3>12</h3>
+                  <h3 id="publishedCount">0</h3>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
                 <div class="card-body">
                   <i class="fas fa-file-alt fa-2x mb-2"></i>
                   <h5 class="card-title mt-2">الطلبات الواردة</h5>
-                  <h3>37</h3>
+                  <h3 id="applicationsCount">0</h3>
                 </div>
               </div>
             </div>
@@ -104,14 +104,14 @@
                 <div class="card-body">
                   <i class="fas fa-chart-bar fa-2x mb-2"></i>
                   <h5 class="card-title mt-2">إحصائيات</h5>
-                  <p class="mb-1">مقبولة: 15</p>
-                  <p class="mb-0">مرفوضة: 22</p>
+                  <p class="mb-1">مقبولة: <span id="acceptedCount">0</span></p>
+                  <p class="mb-0">مرفوضة: <span id="rejectedCount">0</span></p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- يمكن لاحقاً إضافة رسم بياني أو جدول -->
+          <!-- الوظائف المنشورة -->
           <div class="mt-5">
             <h3>آخر الوظائف المنشورة</h3>
             <div class="card shadow-sm">
@@ -127,20 +127,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-black">1</td>
-                      <td class="text-black">عامل بناء</td>
-                      <td class="text-black">8</td>
-                      <td class="text-black"><span class="badge bg-success">نشطة</span></td>
-                      <td class="text-black">2025-05-20</td>
-                    </tr>
-                    <tr>
-                      <td class="text-black">2</td>
-                      <td class="text-black">معلم حجر</td>
-                      <td class="text-black">12</td>
-                      <td class="text-black"><span class="badge bg-danger">منتهية</span></td>
-                      <td class="text-black">2025-05-10</td>
-                    </tr>
+                    <!-- سيتم تعبئة الصفوف من JavaScript -->
                   </tbody>
                 </table>
               </div>
@@ -151,7 +138,9 @@
       </div>
     </div>
   </div>
-<script src="./js/employer.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/employer.js"></script>
+<script src="./js/dashboard-employer.js"></script>
 </body>
 </html>
