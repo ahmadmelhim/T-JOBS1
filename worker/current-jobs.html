@@ -15,67 +15,59 @@
   <i class="fa fa-bars fs-4"></i>
 </button>
 <div class="container-fluid">
-  <div>
+  <div class="row">
     <!-- الشريط الجانبي -->
-    <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
-        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
-            <div class="mb-4 w-100 text-center">
-            <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
-            </div>
-            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
-            
-            <li class="nav-item w-100">
-                <a href="./worker-dashboard.html" class="nav-link text-black w-100 fw-bold ">
-                <i class="fa-solid fa-house me-2"></i>
-                <span class="d-none d-sm-inline">لوحة التحكم</span>
-                </a>
-            </li>
-
-            <li class="nav-item w-100">
-                <a href="./worker-profile.html" class="nav-link text-black w-100">
-                <i class="fa-solid fa-user me-2"></i>
-                <span class="d-none d-sm-inline">الملف الشخصي</span>
-                </a>
-            </li>
-
-            <li class="nav-item w-100">
-                <a href="./worker-applications.html" class="nav-link text-black w-100 ">
-                <i class="fa-solid fa-paper-plane me-2"></i>
-                <span class="d-none d-sm-inline ">طلبات العمل المرسلة</span>
-                </a>
-            </li>
-
-            <li class="nav-item w-100">
-                <a href="./rate-employers.html" class="nav-link text-black w-100 ">
-                <i class="fa-solid fa-star me-2"></i>
-                <span class="d-none d-sm-inline">تقييم أصحاب العمل</span>
-                </a>
-            </li>
-
-            <li class="nav-item w-100">
-                <a href="./current-jobs.html" class="nav-link text-black w-100 active">
-                <i class="fa-solid fa-briefcase me-2"></i>
-                <span class="d-none d-sm-inline">الوظائف الحالية</span>
-                </a>
-            </li>
-
-            <li class="nav-item mt-4 w-100">
-                <a href="../index.html" class="nav-link text-black w-100 fw-bold">
-                <i class="fa-solid fa-globe me-2"></i>
-                <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
-                </a>
-            </li>
-
-            </ul>
-          </div>
+    <div id="sidebarMenu" class="col-md-2 px-sm-2 bg-secColor min-vh-100 d-none d-md-block">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
+        <div class="mb-4 w-100 text-center">
+          <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
+        </div>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
+          <li class="nav-item w-100">
+            <a href="./worker-dashboard.html" class="nav-link text-black w-100 fw-bold">
+              <i class="fa-solid fa-house me-2"></i>
+              <span class="d-none d-sm-inline">لوحة التحكم</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./worker-profile.html" class="nav-link text-black w-100">
+              <i class="fa-solid fa-user me-2"></i>
+              <span class="d-none d-sm-inline">الملف الشخصي</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./worker-applications.html" class="nav-link text-black w-100">
+              <i class="fa-solid fa-paper-plane me-2"></i>
+              <span class="d-none d-sm-inline">طلبات العمل المرسلة</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./rate-employers.html" class="nav-link text-black w-100">
+              <i class="fa-solid fa-star me-2"></i>
+              <span class="d-none d-sm-inline">تقييم أصحاب العمل</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./current-jobs.html" class="nav-link text-black w-100 active">
+              <i class="fa-solid fa-briefcase me-2"></i>
+              <span class="d-none d-sm-inline">الوظائف الحالية</span>
+            </a>
+          </li>
+          <li class="nav-item mt-4 w-100">
+            <a href="../index.html" class="nav-link text-black w-100 fw-bold">
+              <i class="fa-solid fa-globe me-2"></i>
+              <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <!-- محتوى الوظائف الحالية -->
-    <div class="container py-5" id="Body">
+    <!-- المحتوى الرئيسي -->
+    <div class="col-md-10 py-5" id="Body">
       <h2 class="mb-4 fw-bold text-center">الوظائف الحالية</h2>
       <div class="row g-4">
-
-        <!-- دهان -->
+        <!-- مثال على بطاقة وظيفة -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
@@ -87,75 +79,66 @@
             </div>
           </div>
         </div>
-
-        <!-- المنيوم -->
-        <div class="col-12 col-md-6 col-lg-4">
+         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-door-open me-2"></i>ألمنيوم</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: تركيب شبابيك منزل قيد الإنشاء.</p>
-              <p class="mb-1"><strong>الاسم:</strong> محمد علي</p>
+              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
+              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
+              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
               <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
               <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
             </div>
           </div>
         </div>
-
-        <!-- بلاط 1 -->
-        <div class="col-12 col-md-6 col-lg-4">
+         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-border-all me-2"></i>بلاط</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: تبليط شقة سكنية مكونة من 3 غرف.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر علي</p>
+              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
+              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
+              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
               <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
               <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
             </div>
           </div>
         </div>
-
-        <!-- بلاط 2 -->
-        <div class="col-12 col-md-6 col-lg-4">
+         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-border-all me-2"></i>بلاط</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: تبليط شقة سكنية مكونة من 3 غرف.</p>
-              <p class="mb-1"><strong>الاسم:</strong> خالد محمد</p>
+              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
+              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
+              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
               <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
               <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
             </div>
           </div>
         </div>
-
-        <!-- حداد -->
-        <div class="col-12 col-md-6 col-lg-4">
+         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-hammer me-2"></i>حداد</h5>
-              <p class="card-text text-secondary">تفصيل باب منزل رئيسي.</p>
-              <p class="mb-1"><strong>الاسم:</strong> أحمد فارس</p>
+              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
+              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
+              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
               <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
               <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
             </div>
           </div>
         </div>
-
-        <!-- كهرباء -->
-        <div class="col-12 col-md-6 col-lg-4">
+         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 shadow-lg border-0">
             <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-bolt me-2"></i>كهرباء</h5>
-              <p class="card-text text-secondary">أعمال صيانة في منزل مسكون.</p>
-              <p class="mb-1"><strong>الاسم:</strong> فراس محمد</p>
+              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
+              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
+              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
               <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
               <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
             </div>
           </div>
         </div>
+      
 
+        <!-- كرر البطاقات حسب الحاجة -->
       </div>
     </div>
-
   </div>
 </div>
 <script src="./worker.js"></script>

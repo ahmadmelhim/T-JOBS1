@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadEmployerJobs() {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://tjob.tryasp.net/api/Requests", {
+      const response = await fetch("http://tjob.tryasp.net/api/Employer/Requests", {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("Price", document.getElementById("editPrice").value);
 
     const rawDate = document.getElementById("editDate").value;
-const fullDate = `${rawDate}T00:00:00.000Z`;
-formData.append("DateTime", fullDate);
+    const fullDate = `${rawDate}T00:00:00.000Z`;
+    formData.append("DateTime", fullDate);
 
     formData.append("State", document.getElementById("editState").value);
     formData.append("City", document.getElementById("editCity").value);

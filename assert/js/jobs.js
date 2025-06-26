@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const publishDate = formatDate(job.publishDateTime);
 
         return `
-            <div class="col-md-12 bg-mainColor rounded-4 mb-2">
+            <div class="col-md-12 bg-secColor rounded-4 mb-2">
                 <div class="p-3 shadow-sm rounded job-card">
                     <h5 class="mb-1 fw-bold">${job.title}</h5>
                     <p class="mb-1">${location} | تم النشر: ${publishDate}</p>

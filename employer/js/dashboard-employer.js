@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const tbody = document.querySelector("tbody");
     tbody.innerHTML = ""; // مسح الموجود مسبقًا
 
-    const latestJobs = jobs.slice(-5).reverse(); // آخر وظيفتين
+    const latestJobs = jobs.slice(-3).reverse(); // آخر 3 وظائف
     latestJobs.forEach((job, index) => {
       const row = document.createElement("tr");
 
