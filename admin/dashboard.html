@@ -11,107 +11,103 @@
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
 <body>
-
 <button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
   <i class="fa fa-bars fs-4"></i>
 </button>
-<div class="d-flex">
-  <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
-      <div class="mb-4 w-100 text-center">
-        <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
+<div class="container-fluid">
+  <div>
+    <!-- الشريط الجانبي -->
+    <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
+        <div class="mb-4 w-100 text-center">
+          <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
+        </div>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
+          <li class="nav-item w-100">
+            <a href="./dashboard.html" class="nav-link text-black w-100 fw-bold active">
+              <i class="fas fa-home me-2"></i>
+              <span class="d-none d-sm-inline">لوحة التحكم</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./dashboard-users.html" class="nav-link text-black w-100">
+              <i class="fas fa-users me-2"></i>
+              <span class="d-none d-sm-inline">إدارة المستخدمين</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./dashboard-posts.html" class="nav-link text-black w-100">
+              <i class="fa-solid fa-paste"></i>
+              <span class="d-none d-sm-inline">إدارة المنشورات</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./dashboard-reports.html" class="nav-link text-black w-100">
+              <i class="fas fa-flag me-2"></i>
+              <span class="d-none d-sm-inline">الشكاوى</span>
+            </a>
+          </li>
+          <li class="nav-item w-100">
+            <a href="./addType.html" class="nav-link text-black w-100">
+              <i class="fas fa-briefcase me-2"></i>
+              <span class="d-none d-sm-inline">أنواع الأعمال داخل الموقع</span>
+            </a>
+          </li>
+          <li class="nav-item mt-4 w-100">
+            <a href="../index.html" class="nav-link text-black w-100 fw-bold">
+              <i class="fas fa-globe me-2"></i>
+              <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
-        <li class="nav-item w-100">
-          <a href="./dashboard.html" class="nav-link text-black w-100 fw-bold active">
-            <i class="fas fa-home me-2"></i>
-            <span class="d-none d-sm-inline">لوحة التحكم</span>
-          </a>
-        </li>
-        <li class="nav-item w-100">
-          <a href="./dashboard-users.html" class="nav-link text-black w-100">
-            <i class="fas fa-users me-2"></i>
-            <span class="d-none d-sm-inline">إدارة المستخدمين</span>
-          </a>
-        </li>
-        <li class="nav-item w-100">
-          <a href="./dashboard-posts.html" class="nav-link text-black w-100">
-            <i class="fa-solid fa-paste"></i>
-            <span class="d-none d-sm-inline">إدارة المنشورات</span>
-          </a>
-        </li>
-        <li class="nav-item w-100">
-          <a href="./dashboard-reports.html" class="nav-link text-black w-100">
-            <i class="fas fa-flag me-2"></i>
-            <span class="d-none d-sm-inline">الشكاوى</span>
-          </a>
-        </li>
-        <li class="nav-item w-100">
-          <a href="./addType.html" class="nav-link text-black w-100 ">
-            <i class="fas fa-briefcase me-2"></i>
-            <span class="d-none d-sm-inline">أنواع الأعمال داخل الموقع</span>
-          </a>
-        </li>
-        <li class="nav-item mt-4 w-100">
-          <a href="../index.html" class="nav-link text-black w-100 fw-bold">
-            <i class="fas fa-globe me-2"></i>
-            <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
-          </a>
-        </li>
-      </ul>
     </div>
-  </div>
 
-  <div class="container-fluid p-4" id="Body">
-    <h2 class="mb-3 fw-bold mt-1 mb-5 text-center"> لوحة تحكم المشرف </h2>
+    <!-- محتوى لوحة التحكم -->
+    <div class="py-3" id="Body">
+      <div class="container-fluid p-4">
+        <h2 class="mb-3 fw-bold text-center">لوحة تحكم المشرف</h2>
 
-    <div class="row g-3">
-      <div class="col-md-6 col-xl-3">
-        <div class="card shadow-lg border-start rounded-5">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-bold fs-4">عدد المستخدمين</h6>
-              <h4 id="userCount" class="mb-0 text-muted">--</h4>
+        <!-- البطاقات -->
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card text-black text-center p-4 shadow-lg">
+              <div class="card-body">
+                <i class="fas fa-users fa-2x mb-2"></i>
+                <h5 class="card-title mt-2">عدد المستخدمين</h5>
+                <h3 id="userCount">--</h3>
+              </div>
             </div>
-            <div class="card-icon text-primary fs-2 opacity-75"><i class="fas fa-users text-black"></i></div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-black text-center p-4 shadow-lg">
+              <div class="card-body">
+                <i class="fas fa-briefcase fa-2x mb-2"></i>
+                <h5 class="card-title mt-2">الوظائف المنشورة</h5>
+                <h3 id="jobCount">--</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-black text-center p-4 shadow-lg">
+              <div class="card-body">
+                <i class="fas fa-file-alt fa-2x mb-2"></i>
+                <h5 class="card-title mt-2">طلبات التقديم</h5>
+                <h3 id="applicationCount">--</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-black text-center p-4 shadow-lg">
+              <div class="card-body">
+                <i class="fas fa-user-slash fa-2x mb-2"></i>
+                <h5 class="card-title mt-2">الحسابات المحظورة</h5>
+                <h3 id="bannedCount">--</h3>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 col-xl-3">
-        <div class="card shadow-lg border-start rounded-5">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-bold fs-4 ">الوظائف المنشورة</h6>
-              <h4 id="jobCount" class="mb-0 text-muted">--</h4>
-            </div>
-            <div class="card-icon text-success fs-2 opacity-75"><i class="fas fa-briefcase text-black"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <div class="card shadow-lg border-start rounded-5">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-bold fs-4">طلبات التقديم</h6>
-              <h4 id="applicationCount" class="mb-0 text-muted">--</h4>
-            </div>
-            <div class="card-icon text-warning fs-2 opacity-75"><i class="fas fa-file-alt text-black"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <div class="card shadow-lg border-start rounded-5">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-bold fs-4">حسابات محظورة</h6>
-              <h4 id="bannedCount" class="mb-0 text-muted">--</h4>
-            </div>
-            <div class="card-icon text-danger fs-2 opacity-75"><i class="fas fa-user-slash text-black"></i></div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

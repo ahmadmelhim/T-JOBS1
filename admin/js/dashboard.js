@@ -2,30 +2,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
 
   try {
-    // 1. عدد المستخدمين
-    const usersRes = await fetch("http://tjob.tryasp.net/api/Admin/Users", {
-      headers: { Authorization: `Bearer ${token}` }
+    const response = await fetch("http://tjob.tryasp.net/api/Admin/Home", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
-    const users = await usersRes.json();
-    document.getElementById("userCount").textContent = users.length;
 
-    // 2. الوظائف المنشورة
-    const jobsRes = await fetch("http://tjob.tryasp.net/api/Admin/Requests", {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    const jobs = await jobsRes.json();
-    document.getElementById("jobCount").textContent = jobs.length;
+    if (!response.ok) throw new Error("فشل في جلب البيانات");
 
-    // 3. طلبات التقديم
-    let totalApplications = 0;
-    jobs.forEach(job => totalApplications += job.applicationsCount || 0);
-    document.getElementById("applicationCount").textContent = totalApplications;
+    const data = await response.json();
 
-    // 4. حسابات محظورة
-    const banned = users.filter(u => u.lockoutEnabled || u.isBanned);
-    document.getElementById("bannedCount").textContent = banned.length;
+    // عرض البيانات في العناصر
+    document.getElementById("userCount").textContent = data.totalNumberOfUsers ?? "--";
+    document.getElementById("jobCount").textContent = data.totalNumberOfRequests ?? "--";
+    document.getElementById("applicationCount").textContent = data.totalNumberOfApplications ?? "--";
+    document.getElementById("bannedCount").textContent = data.totalNumberOfBlockedUsers ?? "--";
 
   } catch (err) {
-    console.error("خطأ في تحميل بيانات لوحة التحكم:", err);
+    console.error(err);
+    alert("حدث خطأ أثناء تحميل بيانات لوحة التحكم");
   }
 });
