@@ -33,7 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <td class="text-black-50">${job.requestTypeName || "غير محدد"}</td>
           <td class="text-black-50">${formatDate(job.dateTime)}</td>
           <td class="text-black-50">${job.city}</td>
-          <td><span class="badge bg-success">نشطة</span></td>
+          <td>
+            <span class="badge ${job.requestStatus === 0 ? 'bg-success' : 'bg-danger'}">
+              ${job.requestStatus === 0 ? 'نشطة' : 'منتهية'}
+            </span>
+          </td>
           <td>
             <button class="btn btn-sm btn-primary" onclick="editJob(${job.id})">تعديل</button>
             <button class="btn btn-sm btn-danger" onclick="deleteJob(${job.id})">حذف</button>

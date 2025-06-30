@@ -77,44 +77,79 @@
 
 
       <!-- المحتوى الرئيسي -->
-      <div id="Body">
-        <div class="container">
-          <h2 class="fw-bold mb-4 text-black mt-5 text-center">تقييم العامل بعد إنجاز المهمة</h2>
+<div class="container py-5">
+  <h2 class="text-center fw-bold mb-5 text-black">تقييماتي</h2>
 
-          <div class="card shadow-sm">
-           
-            <div class="card-body">
-              <form id="ratingForm">
-                <div class="mb-3">
-                  <label for="workerName" class="form-label text-black">اسم العامل:</label>
-                  <input type="text" class="form-control" id="workerName" placeholder="أدخل اسم العامل" required>
-                </div>
-
-                <div class="mb-3">
-                  <label class="form-label text-black">التقييم:</label>
-                  <div id="starRating" class="d-flex flex-row-reverse justify-content-end gap-2">
-                    <i class="fa-regular fa-star fs-3 text-secondary" data-value="5" role="button"></i>
-                    <i class="fa-regular fa-star fs-3 text-secondary" data-value="4" role="button"></i>
-                    <i class="fa-regular fa-star fs-3 text-secondary" data-value="3" role="button"></i>
-                    <i class="fa-regular fa-star fs-3 text-secondary" data-value="2" role="button"></i>
-                    <i class="fa-regular fa-star fs-3 text-secondary" data-value="1" role="button"></i>
-                  </div>
-                  <input type="hidden" id="ratingValue" name="rating" value="0" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="comment" class="form-label text-black">تعليق:</label>
-                  <textarea class="form-control" id="comment" rows="4" placeholder="اكتب تعليقك هنا..." required></textarea>
-                </div>
-
-                <div class="text-center">
-                  <button type="submit" class="btn bg-blueColor text-black">إرسال التقييم</button>
-                </div>
-              </form>
-            </div>
+  <div class="row g-4">
+    <!-- تقييم -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card border-0 shadow rounded-4 p-3">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://i.pravatar.cc/50?img=1" class="rounded-circle me-3" alt="avatar">
+          <div>
+            <h5 class="mb-0">أحمد منصور</h5>
+            <small class="text-muted">مندوب مبيعات</small>
           </div>
         </div>
+        <div class="mb-2 text-end">
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="far fa-star text-warning"></i>
+        </div>
+        <p class="bg-light rounded p-3 text-black-50">عمل ممتاز وسرعة في الاستجابة، أنصح بالتعاون معه.</p>
+        <div class="text-end text-muted small">2025-06-01</div>
       </div>
+    </div>
+
+    <!-- تقييم ثاني -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card border-0 shadow rounded-4 p-3">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://i.pravatar.cc/50?img=5" class="rounded-circle me-3" alt="avatar">
+          <div>
+            <h5 class="mb-0">رنا خليل</h5>
+            <small class="text-muted">عاملة مستودع</small>
+          </div>
+        </div>
+        <div class="mb-2 text-end">
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+        </div>
+        <p class="bg-light rounded p-3 text-black-50">جداً ممتازة في العمل والتزام عالي بالمواعيد.</p>
+        <div class="text-end text-muted small">2025-05-29</div>
+      </div>
+    </div>
+
+    <!-- تقييم ثالث -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card border-0 shadow rounded-4 p-3">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://i.pravatar.cc/50?img=8" class="rounded-circle me-3" alt="avatar">
+          <div>
+            <h5 class="mb-0">محمد جابر</h5>
+            <small class="text-muted">مساعد إداري</small>
+          </div>
+        </div>
+        <div class="mb-2 text-end">
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="far fa-star text-warning"></i>
+          <i class="far fa-star text-warning"></i>
+        </div>
+        <p class="bg-light rounded p-3 text-black-50">بحاجة لتحسين مهارات التواصل.</p>
+        <div class="text-end text-muted small">2025-05-25</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     </div>
   </div>

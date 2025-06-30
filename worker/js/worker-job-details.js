@@ -3,7 +3,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   const jobId = params.get("id");
 
   if (!jobId) {
-    alert("لم يتم تحديد الوظيفة.");
+    Swal.fire({
+      title: "خطأ",
+      text: "لم يتم تحديد الوظيفة.",
+      icon: "error",
+      position: "top-end",
+      toast: true,
+      timer: 3000,
+      showConfirmButton: false
+    });
     return;
   }
 
@@ -17,14 +25,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const job = await res.json();
 
-    // مسار الصورة
-    let imgPath = "../assert/image/original.avif"; // مسار بديل في حال عدم وجود صورة
-
+    // استخراج اسم الملف من رابط الصورة
+    let imgPath = "";
     if (job.mainImg) {
-      const match = job.mainImg.match(/images[\\/](.*\.jpg)/i);
-      if (match && match[1]) {
-        imgPath = `http://tjob.tryasp.net/images/${match[1]}`;
-      }
+      const filename = job.mainImg.split(/[/\\]/).pop();
+      imgPath = `http://tjob.tryasp.net/images/${filename}`;
     }
 
     // تعبئة البيانات في الصفحة
@@ -39,6 +44,68 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("خطأ أثناء تحميل البيانات.");
+    Swal.fire({
+      title: "خطأ",
+      text: "حدث خطأ أثناء تحميل البيانات.",
+      icon: "error",
+      position: "top-end",
+      toast: true,
+      timer: 3000,
+      showConfirmButton: false
+    });
   }
+
+  // التقديم على الوظيفة
+  document.getElementById("applyBtn").addEventListener("click", async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        title: "تنبيه",
+        text: "يرجى تسجيل الدخول أولاً",
+        icon: "warning",
+        position: "top-end",
+        toast: true,
+        timer: 3000,
+        showConfirmButton: false
+      });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("RequestId", jobId);
+    formData.append("File", new Blob([])); // إرسال ملف فارغ كما يتطلب الـ API
+
+    try {
+      const res = await fetch("http://tjob.tryasp.net/api/Worker/Requests/ApplyJob", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (!res.ok) throw new Error("فشل في إرسال الطلب");
+
+      Swal.fire({
+        title: "تم التقديم!",
+        text: "تم إرسال طلبك بنجاح",
+        icon: "success",
+        position: "top-end",
+        toast: true,
+        timer: 3000,
+        showConfirmButton: false
+      });
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        title: "خطأ",
+        text: "حدث خطأ أثناء التقديم",
+        icon: "error",
+        position: "top-end",
+        toast: true,
+        timer: 3000,
+        showConfirmButton: false
+      });
+    }
+  });
 });

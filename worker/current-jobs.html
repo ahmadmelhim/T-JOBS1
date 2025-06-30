@@ -11,9 +11,11 @@
   <link rel="stylesheet" href="../assert/css/main.css" />
 </head>
 <body>
+
 <button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
   <i class="fa fa-bars fs-4"></i>
 </button>
+
 <div class="container-fluid">
   <div class="row">
     <!-- الشريط الجانبي -->
@@ -66,82 +68,15 @@
     <!-- المحتوى الرئيسي -->
     <div class="col-md-10 py-5" id="Body">
       <h2 class="mb-4 fw-bold text-center">الوظائف الحالية</h2>
-      <div class="row g-4">
-        <!-- مثال على بطاقة وظيفة -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 shadow-lg border-0">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><i class="fa-solid fa-paint-roller me-2"></i>دهان</h5>
-              <p class="card-text text-secondary">تفاصيل المهمة: صيانة منزل.</p>
-              <p class="mb-1"><strong>الاسم:</strong> عمر خالد</p>
-              <p class="mb-1"><strong>البريد:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
-              <p class="mb-0"><strong>الهاتف:</strong> <a href="tel:05XXXXXXXX">05XXXXXXXX</a></p>
-            </div>
-          </div>
-        </div>
-      
-
-        <!-- كرر البطاقات حسب الحاجة -->
+      <div class="row g-4" id="jobsContainer">
+        <!-- يتم توليد الوظائف عبر JavaScript -->
       </div>
     </div>
   </div>
 </div>
-<script src="./worker.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/current-jobs.js"></script>
+<script src="./worker.js"></script>
 </body>
 </html>
