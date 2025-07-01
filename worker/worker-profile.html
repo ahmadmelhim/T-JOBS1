@@ -69,34 +69,47 @@
       <div class="container p-4">
         <div class="mb-4 d-flex flex-column align-items-end">
           <img src="../assert/image/logo.png" alt="صورة العامل" id="companyImagePreview"
-     class="rounded-circle border mb-2" style="width: 120px; height: 120px; object-fit: cover;">
-
+               class="rounded-circle border mb-2" style="width: 120px; height: 120px; object-fit: cover;">
         </div>
-        <form>
+        <form id="profileForm">
           <div class="row g-3">
             <div class="col-md-6">
               <label for="Name" class="form-label text-black">الاسم</label>
-              <input type="text" class="form-control text-black" id="Name" placeholder="الاسم الكامل" />
+              <input type="text" class="form-control text-black" id="Name" placeholder="الاسم الكامل" disabled />
             </div>
             <div class="col-md-6">
               <label for="email" class="form-label text-black">البريد الإلكتروني</label>
-              <input type="email" class="form-control text-black" id="email" placeholder="email@gmail.com" />
+              <input type="email" class="form-control text-black" id="email" placeholder="email@gmail.com" disabled />
             </div>
             <div class="col-md-6">
               <label for="phone" class="form-label text-black">رقم الهاتف</label>
-              <input type="number" class="form-control text-black" id="phone" placeholder="05XXXXXXXX" />
+              <input type="number" class="form-control text-black" id="phone" placeholder="05XXXXXXXX" disabled />
             </div>
             <div class="col-md-6">
               <label for="location" class="form-label text-black">العنوان</label>
-              <input type="text" class="form-control text-black" id="location" placeholder="المدينة" />
+              <input type="text" class="form-control text-black" id="location" placeholder="المدينة - الشارع" disabled />
             </div>
             <div class="col-md-12">
               <label for="skills" class="form-label text-black">المهارات</label>
-              <input type="text" class="form-control text-black" id="skills" placeholder="مثل: نجار، كهربائي" />
+              <input type="text" class="form-control text-black" id="skills" placeholder="مثل: نجار، كهربائي" disabled />
             </div>
             <div class="col-12">
               <label for="description" class="form-label text-black">الخبرات</label>
-              <textarea class="form-control text-black" id="description" rows="4" placeholder="اكتب خبراتك السابقة هنا.."></textarea>
+              <textarea class="form-control text-black" id="description" rows="4" placeholder="اكتب خبراتك السابقة هنا.." disabled></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="profileImageInput" class="form-label text-black">الصورة الشخصية</label>
+              <input type="file" class="form-control" id="profileImageInput" accept="image/*" disabled />
+            </div>
+            <div class="col-md-6">
+              <label for="cvInput" class="form-label text-black">السيرة الذاتية (PDF)</label>
+              <input type="file" class="form-control" id="cvInput" accept=".pdf" disabled />
+            </div>
+            <div class="col-md-12" id="cvDownloadContainer" style="display: none;">
+              <label class="form-label text-black">السيرة الذاتية الحالية:</label><br />
+              <a id="cvDownloadLink" href="#" class="btn btn-outline-dark" target="_blank">
+                <i class="fa fa-download me-2"></i> تحميل السيرة الذاتية القديمة
+              </a>
             </div>
             <div class="row g-3 mb-4">
               <div class="col-md-6">
@@ -117,9 +130,13 @@
               </div>
             </div>
             <div class="text-center mt-4">
-              <button type="submit" class="btn bg-blueColor px-4 text-white">
+              <button type="button" class="btn bg-blueColor px-4 text-white" id="editBtn">
                 <i class="fa-solid fa-pen-to-square me-2"></i>
                 تعديل المعلومات
+              </button>
+              <button type="submit" class="btn btn-success px-4 text-white d-none" id="saveBtn">
+                <i class="fa-solid fa-check me-2"></i>
+                حفظ التعديلات
               </button>
             </div>
           </div>
@@ -135,3 +152,4 @@
 <script src="./js/worker-profile.js"></script>
 </body>
 </html>
+

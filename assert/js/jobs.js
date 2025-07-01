@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // عناصر الصفحة المستخدمة في التحكم والعرض
     const jobsContainer = document.getElementById("jobsContainer");
     const loadingIndicator = document.getElementById("loadingIndicator");
     const errorMessage = document.getElementById("errorMessage");
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let allJobs = [];
     let filteredJobs = [];
 
-    // دالة لعرض رسالة Toast
     function showToast(icon, title) {
         const Toast = Swal.mixin({
             toast: true,
@@ -33,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return Toast.fire({ icon, title });
     }
 
-    //  لتحويل التاريخ إلى نص مثل قبل يوم أو قبل أسبوع
     function formatDate(dateString) {
         const date = new Date(dateString);
         const now = new Date();
@@ -48,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         else return "قبل أكثر من شهر";
     }
 
-    // دالة لإنشاء كرت عرض الوظيفة بتنسيق HTML
     function createJobCard(job) {
         const location = `${job.city}, ${job.state}`;
         const publishDate = formatDate(job.publishDateTime);
@@ -75,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // دالة لعرض قائمة الوظائف المفلترة حسب الصفحة الحالية
     function displayJobs(jobs) {
         if (jobs.length === 0) {
             jobsContainer.innerHTML = "";
@@ -93,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
         createPagination(jobs.length);
     }
 
-    // دالة لإنشاء عناصر التنقل بين الصفحات
     function createPagination(totalJobs) {
         const totalPages = Math.ceil(totalJobs / jobsPerPage);
         if (totalPages <= 1) {
@@ -120,14 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".pagination").innerHTML = paginationHTML;
     }
 
-    // دالة تغيير الصفحة عند التنقل
     window.changePage = function (page) {
         currentPage = page;
         displayJobs(filteredJobs);
         document.getElementById("jobsContainer").scrollIntoView({ behavior: "smooth" });
     };
 
-    // دالة لتطبيق الفلاتر على الوظائف حسب النوع والمدينة والتاريخ
     function applyFilters() {
         const typeValue = typeFilter.value.toLowerCase();
         const cityValue = cityFilter.value.toLowerCase();
@@ -158,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
         displayJobs(filteredJobs);
     }
 
-    // دالة لجلب الوظائف من الـ API وعرضها
     async function fetchJobs() {
         try {
             loadingIndicator.classList.remove("d-none");
@@ -170,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch("http://tjob.tryasp.net/api/Requests");
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const jobs = await response.json();
+            console.log("الوظائف المسترجعة:", jobs);
 
             loadingIndicator.classList.add("d-none");
             allJobs = jobs;
@@ -184,10 +176,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // دالة لجلب أنواع الوظائف (المجالات) من الـ API ووضعها في قائمة الفلترة
     async function loadRequestTypes() {
+        const token = localStorage.getItem("token"); // ✅ جلب التوكن
+
         try {
-            const response = await fetch("http://tjob.tryasp.net/api/Admin/RequestTypes");
+            const response = await fetch("http://tjob.tryasp.net/api/Admin/RequestTypes", {
+                headers: {
+                    "Authorization": `Bearer ${token}` // ✅ إرسال التوكن
+                }
+            });
+
             if (!response.ok) throw new Error("فشل في جلب أنواع الطلبات");
 
             const types = await response.json();
@@ -204,13 +202,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ربط الأحداث مع الفلاتر
     applyFiltersBtn.addEventListener("click", applyFilters);
     typeFilter.addEventListener("change", applyFilters);
     cityFilter.addEventListener("change", applyFilters);
     dateFilter.addEventListener("change", applyFilters);
 
-    // تحميل الأنواع والوظائف عند تحميل الصفحة
     loadRequestTypes();
     fetchJobs();
 });

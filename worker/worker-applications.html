@@ -16,129 +16,71 @@
 </button>
 
 <div class="container-fluid">
-  
   <div>
-    
     <!-- الشريط الجانبي -->
-<div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
+    <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
         <div class="mb-4 w-100 text-center">
-        <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
+          <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
         </div>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
-        
-        <li class="nav-item w-100">
+          <li class="nav-item w-100">
             <a href="./worker-dashboard.html" class="nav-link text-black w-100 fw-bold ">
-            <i class="fa-solid fa-house me-2"></i>
-            <span class="d-none d-sm-inline">لوحة التحكم</span>
+              <i class="fa-solid fa-house me-2"></i>
+              <span class="d-none d-sm-inline">لوحة التحكم</span>
             </a>
-        </li>
-
-        <li class="nav-item w-100">
+          </li>
+          <li class="nav-item w-100">
             <a href="./worker-profile.html" class="nav-link text-black w-100">
-            <i class="fa-solid fa-user me-2"></i>
-            <span class="d-none d-sm-inline">الملف الشخصي</span>
+              <i class="fa-solid fa-user me-2"></i>
+              <span class="d-none d-sm-inline">الملف الشخصي</span>
             </a>
-        </li>
-
-        <li class="nav-item w-100">
+          </li>
+          <li class="nav-item w-100">
             <a href="./worker-applications.html" class="nav-link text-black w-100 active">
-            <i class="fa-solid fa-paper-plane me-2"></i>
-            <span class="d-none d-sm-inline ">طلبات العمل المرسلة</span>
+              <i class="fa-solid fa-paper-plane me-2"></i>
+              <span class="d-none d-sm-inline ">طلبات العمل المرسلة</span>
             </a>
-        </li>
-
-        <li class="nav-item w-100">
+          </li>
+          <li class="nav-item w-100">
             <a href="./rate-employers.html" class="nav-link text-black w-100">
-            <i class="fa-solid fa-star me-2"></i>
-            <span class="d-none d-sm-inline">تقييم أصحاب العمل</span>
+              <i class="fa-solid fa-star me-2"></i>
+              <span class="d-none d-sm-inline">تقييم أصحاب العمل</span>
             </a>
-        </li>
-
-        <li class="nav-item w-100">
+          </li>
+          <li class="nav-item w-100">
             <a href="./current-jobs.html" class="nav-link text-black w-100">
-            <i class="fa-solid fa-briefcase me-2"></i>
-            <span class="d-none d-sm-inline">الوظائف الحالية</span>
+              <i class="fa-solid fa-briefcase me-2"></i>
+              <span class="d-none d-sm-inline">الوظائف الحالية</span>
             </a>
-        </li>
-
-        <li class="nav-item mt-4 w-100">
+          </li>
+          <li class="nav-item mt-4 w-100">
             <a href="../index.html" class="nav-link text-black w-100 fw-bold">
-            <i class="fa-solid fa-globe me-2"></i>
-            <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
+              <i class="fa-solid fa-globe me-2"></i>
+              <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
             </a>
-        </li>
-
+          </li>
         </ul>
-      </div>
-</div>
+      </div>
+    </div>
 
     <!-- محتوى طلبات العمل -->
     <div class="py-5 px-4" id="Body">
-        <h2 class="mb-3 fw-bold text-center">طلبات العمل المرسلة</h2>
-
-      <div class="card d-flex flex-column" >
-       
+      <h2 class="mb-3 fw-bold text-center">طلبات العمل المرسلة</h2>
+      <div class="card d-flex flex-column">
         <div class="card-body overflow-auto flex-grow-1">
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong >مسمى الوظيفة:</strong> بلاط<br/>
-                <small>التاريخ: 2025-04-25</small>
-              </div>
-              <span class="badge bg-warning text-dark rounded-pill">قيد المراجعة</span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>مسمى الوظيفة:</strong> دهان <br/>
-                <small>التاريخ: 2025-04-20</small>
-              </div>
-              <span class="badge bg-success rounded-pill">مقبول</span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>مسمى الوظيفة:</strong> نجار<br/>
-                <small>التاريخ: 2025-04-18</small>
-              </div>
-              <span class="badge bg-danger rounded-pill">مرفوض</span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>مسمى الوظيفة:</strong> نجار<br/>
-                <small>التاريخ: 2025-05-18</small>
-              </div>
-              <span class="badge bg-danger rounded-pill">مرفوض</span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>مسمى الوظيفة:</strong> المنيوم<br/>
-                <small>التاريخ: 2025-05-14</small>
-              </div>
-              <span class="badge bg-success rounded-pill">مقبول</span>
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>مسمى الوظيفة:</strong> حداد<br/>
-                <small>التاريخ: 2025-05-19</small>
-              </div>
-              <span class="badge bg-warning text-dark rounded-pill">قيد المراجعة</span>
-            </li>
+          <ul class="list-group" id="applicationsList">
+            <!-- الطلبات سيتم تحميلها من JavaScript -->
           </ul>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./worker.js"></script>
 <script src="./js/worker-applications.js"></script>
-
 </body>
 </html>

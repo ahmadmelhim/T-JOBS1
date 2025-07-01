@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </span>
           </td>
           <td>
-            <button class="btn btn-sm ${isBanned ? "btn-success" : "btn-danger"} toggle-lock-btn" data-id="${user.id}" data-role="${role}">
+            <button class="btn btn-sm ${isBanned ? "btn-success" : "btn-danger"} toggle-lock-btn" data-id="${user.id}" data-role="${role}" data-status="${isBanned}">
               ${isBanned ? "إلغاء الحظر" : "حظر"}
             </button>
           </td>
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", async () => {
           const userId = button.getAttribute("data-id");
           const role = button.getAttribute("data-role");
+          const currentStatus = button.getAttribute("data-status") === "true";
 
           if (role === "Admin" || role === "Super Admin") {
             showToast("warning", "لا يمكن حظر هذا المستخدم");
@@ -83,17 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
               // تحديث الحالة في نفس الصف مباشرةً
               const row = button.closest("tr");
               const badge = row.querySelector(".status-badge");
-              const wasBanned = badge.classList.contains("bg-danger");
+
+              const isNowBanned = !currentStatus;
 
               // تحديث الشارة
               badge.classList.remove("bg-danger", "bg-success");
-              badge.classList.add(wasBanned ? "bg-success" : "bg-danger");
-              badge.textContent = wasBanned ? "نشط" : "محظور";
+              badge.classList.add(isNowBanned ? "bg-danger" : "bg-success");
+              badge.textContent = isNowBanned ? "محظور" : "نشط";
 
               // تحديث الزر
               button.classList.remove("btn-danger", "btn-success");
-              button.classList.add(wasBanned ? "btn-danger" : "btn-success");
-              button.textContent = wasBanned ? "حظر" : "إلغاء الحظر";
+              button.classList.add(isNowBanned ? "btn-success" : "btn-danger");
+              button.textContent = isNowBanned ? "إلغاء الحظر" : "حظر";
+              button.setAttribute("data-status", isNowBanned);
             } else {
               showToast("error", "فشل تنفيذ الإجراء");
             }

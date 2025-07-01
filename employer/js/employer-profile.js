@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!token) return;
 
   try {
-    // بيانات الملف الشخصي
     const res = await fetch("http://tjob.tryasp.net/api/Employer/Users", {
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -11,23 +10,46 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("فشل في جلب البيانات");
 
     const data = await res.json();
+    console.log("📦 بيانات المستخدم الراجعة من API:", data);
 
-    document.getElementById("Name").value = `${data.firstName || ""} ${data.lastName || ""}`;
-    document.getElementById("email").value = data.email || "";
-    document.getElementById("phone").value = data.phoneNumber || "";
-    document.getElementById("location").value = `${data.city || ""} ${data.street || ""}`;
-    document.getElementById("description").value = data.description || "";
+    const user = data.userResponse;
+    const interests = data.userInterestsResponse;
 
-    const interests = data.skillsOrInterests || [];
+    console.log("✅ userResponse:", user);
+    console.log("✅ userInterestsResponse:", interests);
+
+    if (
+      (!user.firstName && !user.lastName && !user.email && !user.phoneNumber) &&
+      (!interests || interests.skills.length === 0)
+    ) {
+      Swal.fire({
+        icon: "info",
+        title: "تنبيه",
+        text: "البيانات المستلمة من الخادم فارغة.",
+        toast: true,
+        position: "top-end",
+        timer: 4000,
+        showConfirmButton: false
+      });
+    }
+
+    document.getElementById("Name").value = `${user.firstName || ""} ${user.lastName || ""}`;
+    document.getElementById("email").value = user.email || "";
+    document.getElementById("phone").value = user.phoneNumber || "";
+    document.getElementById("location").value = `${user.city || ""} ${user.street || ""}`;
+    document.getElementById("description").value = interests.description || "";
+
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      cb.checked = interests.includes(cb.value);
+      cb.checked = (interests.skills || []).includes(cb.value);
     });
 
-    // تعطيل الحقول
     document.querySelectorAll("input, textarea").forEach(el => el.setAttribute("disabled", true));
 
+    document.getElementById("jobsCount").textContent = `${data.postedJobsCount || 0} وظيفة`;
+    document.querySelector(".card-text.fs-4.fw-bold").textContent = `${data.avgRating || 0} / 5`;
+
   } catch (err) {
-    console.error("حدث خطأ أثناء تحميل البيانات:", err);
+    console.error("❌ خطأ أثناء تحميل البيانات:", err);
     Swal.fire({
       icon: "error",
       title: "فشل التحميل",
@@ -36,22 +58,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       timer: 3000,
       showConfirmButton: false
     });
-  }
-
-  // جلب عدد الوظائف المنشورة
-  try {
-    const jobRes = await fetch("http://tjob.tryasp.net/api/Employer/Requests", {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    if (!jobRes.ok) throw new Error("فشل تحميل الوظائف");
-
-    const jobs = await jobRes.json();
-    const count = Array.isArray(jobs) ? jobs.length : 0;
-    document.getElementById("jobsCount").textContent = `${count} وظيفة`;
-  } catch (err) {
-    console.error("خطأ في تحميل الوظائف:", err);
-    document.getElementById("jobsCount").textContent = "0 وظيفة";
   }
 });
 
@@ -76,18 +82,38 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
   const city = locationParts[0] || null;
   const street = locationParts.slice(1).join(" ") || null;
 
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const skills = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+
+  if (!firstName || !lastName || !email || !phone || !description) {
+    Swal.fire({
+      icon: "warning",
+      title: "تنبيه",
+      text: "يرجى تعبئة جميع الحقول قبل الحفظ",
+      toast: true,
+      position: "top-end",
+      timer: 3000,
+      showConfirmButton: false
+    });
+    return;
+  }
+
   const body = {
     firstName,
     lastName,
-    email: document.getElementById("email").value.trim(),
-    phoneNumber: document.getElementById("phone").value.trim(),
+    email,
+    phoneNumber: phone,
     state: null,
     city,
     street,
     ssn: null,
-    skillsOrInterests: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value),
-    description: document.getElementById("description").value.trim()
+    skillsOrInterests: skills,
+    description
   };
+
+  console.log("📤 إرسال البيانات المعدلة:", body);
 
   try {
     const res = await fetch("http://tjob.tryasp.net/api/Employer/Users", {
@@ -115,7 +141,7 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
     document.getElementById("saveBtn").classList.add("d-none");
 
   } catch (err) {
-    console.error("خطأ أثناء الحفظ:", err);
+    console.error("❌ خطأ أثناء الحفظ:", err);
     Swal.fire({
       icon: "error",
       title: "فشل الحفظ",

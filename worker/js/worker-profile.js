@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -31,6 +32,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("skills").value = (skillsData.skills || []).join(", ");
     document.getElementById("description").value = skillsData.description || "";
 
+    // عرض الصورة الشخصية من الـ API
+    if (user.profileImageUrl) {
+      document.getElementById("companyImagePreview").src = user.profileImageUrl;
+    }
+
+    // عرض رابط تحميل CV إن وُجد
+    if (user.cvUrl) {
+      const cvContainer = document.getElementById("cvDownloadContainer");
+      const cvLink = document.getElementById("cvDownloadLink");
+      cvLink.href = user.cvUrl;
+      cvContainer.style.display = "block";
+    }
+
   } catch (err) {
     console.error("خطأ:", err);
     Swal.fire({
@@ -41,7 +55,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-document.querySelector("form").addEventListener("submit", async (e) => {
+document.getElementById("editBtn").addEventListener("click", () => {
+  document.querySelectorAll("#profileForm input, #profileForm textarea").forEach(el => {
+    el.disabled = false;
+  });
+
+  document.getElementById("editBtn").classList.add("d-none");
+  document.getElementById("saveBtn").classList.remove("d-none");
+});
+
+document.getElementById("profileForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const token = localStorage.getItem("token");
@@ -51,31 +74,31 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const location = document.getElementById("location").value.trim();
   const skills = document.getElementById("skills").value.split(",").map(s => s.trim());
   const description = document.getElementById("description").value;
+  const profileImage = document.getElementById("profileImageInput").files[0];
+  const cvFile = document.getElementById("cvInput").files[0];
 
   const [firstName = "", lastName = ""] = fullName.split(" ");
   const [city = "", street = ""] = location.split(" - ");
 
-  const body = {
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    state: "الضفة الغربية",
-    city,
-    street,
-    ssn: "000000000",
-    skillsOrInterests: skills,
-    description
-  };
+  const formData = new FormData();
+  formData.append("FirstName", firstName);
+  formData.append("LastName", lastName);
+  formData.append("Email", email);
+  formData.append("PhoneNumber", phoneNumber);
+  formData.append("State", "الضفة الغربية");
+  formData.append("City", city);
+  formData.append("Street", street);
+  formData.append("SSN", "000000000");
+  skills.forEach(skill => formData.append("SkillsOrInterests", skill));
+  formData.append("Description", description);
+  formData.append("ProfileImage", profileImage || new File([""], "empty.jpg"));
+  formData.append("CV", cvFile || new File([""], "empty.pdf"));
 
   try {
     const res = await fetch("http://tjob.tryasp.net/api/Worker/Users", {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(body)
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData
     });
 
     if (!res.ok) throw new Error("فشل في تعديل البيانات");
@@ -90,6 +113,12 @@ document.querySelector("form").addEventListener("submit", async (e) => {
       showConfirmButton: false,
     });
 
+    document.querySelectorAll("#profileForm input, #profileForm textarea").forEach(el => {
+      el.disabled = true;
+    });
+    document.getElementById("editBtn").classList.remove("d-none");
+    document.getElementById("saveBtn").classList.add("d-none");
+
   } catch (error) {
     console.error("خطأ أثناء التعديل:", error);
     Swal.fire({
@@ -97,5 +126,17 @@ document.querySelector("form").addEventListener("submit", async (e) => {
       title: "خطأ",
       text: "فشل في حفظ البيانات",
     });
+  }
+});
+
+// عرض الصورة المختارة مباشرة
+document.getElementById("profileImageInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("companyImagePreview").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 });
