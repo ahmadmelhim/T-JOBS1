@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchApplications() {
     try {
-      const response = await fetch("http://tjob.tryasp.net/api/Employer/Requests/Application", {
+      const response = await fetch("http://tjob.tryasp.net/api/Worker/Requests/sent-requests", {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbody.innerHTML = "";
 
       data.forEach((app, index) => {
+        const isAccepted = app.status === "Accepted";
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="text-black">${index + 1}</td>
@@ -22,24 +23,51 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${app.email}</td>
           <td class="text-black">${app.applyDate?.split("T")[0]}</td>
           <td>
-            <a href="${app.cvUrl}" target="_blank" class="btn btn-sm btn-info text-white"><i class="fas fa-file-alt me-1"></i>السيرة الذاتية</a>
-            <button class="btn btn-sm btn-success text-white" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'accept')"><i class="fas fa-check me-1"></i>قبول</button>
-            <button class="btn btn-sm btn-danger text-white" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'reject')"><i class="fas fa-times me-1"></i>رفض</button>
+            <a href="${app.cvUrl}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
+              <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
+            </a><br>
+            <button class="btn btn-sm btn-success text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'accept')">
+              <i class="fas fa-check me-1"></i>قبول
+            </button>
+            <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'reject')">
+              <i class="fas fa-times me-1"></i>رفض
+            </button><br>
+            ${isAccepted ? `
+              <button class="btn btn-sm btn-secondary text-white mt-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'complete')">
+                <i class="fas fa-check-double me-1"></i>إنهاء العمل
+              </button>
+            ` : ""}
           </td>
         `;
         tbody.appendChild(tr);
       });
     } catch (err) {
       console.error("فشل في تحميل الطلبات:", err);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "فشل في تحميل الطلبات",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
     }
   }
 
   window.handleApplicationAction = async (requestId, userId, action) => {
     let url = "";
+    let successMessage = "";
+
     if (action === "accept") {
       url = `http://tjob.tryasp.net/api/Employer/Requests/AcceptApplication?requestId=${requestId}&userId=${userId}`;
+      successMessage = "تم قبول الطلب";
     } else if (action === "reject") {
       url = `http://tjob.tryasp.net/api/Employer/Requests/DeAcceptApplication?requestId=${requestId}&userId=${userId}`;
+      successMessage = "تم رفض الطلب";
+    } else if (action === "complete") {
+      url = `http://tjob.tryasp.net/api/Employer/Requests/CompleteApplication?requestId=${requestId}&userId=${userId}`;
+      successMessage = "تم إنهاء العمل";
     }
 
     try {
@@ -49,9 +77,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (!res.ok) throw new Error("فشل في تنفيذ الطلب");
-      await fetchApplications(); // إعادة تحميل الطلبات بعد الإجراء
+
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: successMessage,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true
+      });
+
+      await fetchApplications();
     } catch (error) {
       console.error("خطأ:", error);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "حدث خطأ أثناء تنفيذ العملية",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
     }
   };
 

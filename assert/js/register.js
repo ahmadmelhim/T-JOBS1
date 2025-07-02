@@ -8,7 +8,9 @@ registerSubmit.addEventListener('submit', async (e) => {
   const firstName = document.getElementById('firstName').value;
   const lastName = document.getElementById('lastName').value;
   const age = document.getElementById('age').value;
-  const address = document.getElementById('address').value;
+  const state = document.getElementById('state').value;
+  const city = document.getElementById('city').value;
+  const street = document.getElementById('street').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
   const userType = document.getElementById('userType').value;
@@ -46,12 +48,14 @@ registerSubmit.addEventListener('submit', async (e) => {
     email: email,
     firstName: firstName,
     lastName: lastName,
-    age: parseInt(age), // تأكد من تحويل العمر إلى رقم صحيح
-    address: address,
+    age: parseInt(age),
     password: password,
     confirmPassword: confirmPassword,
-    userType: parseInt(userType), // تأكد من تحويل نوع المستخدم إلى رقم صحيح
-    ssn: ssn // يمكن أن يكون فارغًا أو رقمًا
+    userType: parseInt(userType),
+    ssn: ssn,
+    state: state,
+    city: city,
+    street: street
   };
 
   try {

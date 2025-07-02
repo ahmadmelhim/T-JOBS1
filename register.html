@@ -28,9 +28,9 @@
     <div class="container signup-container">
       <div class="signup-box bg-mainColor mb-5">
         <h2>إنشاء حساب جديد</h2>
-        <form class="signup-form" id="registerSubmit" enctype="multipart/form-data">
+        <form class="signup-form" id="registerSubmit">
           <div class="mb-3 text-start">
-            <label for="userName" class="form-label">إسم المستخدم</label>
+            <label for="userName" class="form-label">اسم المستخدم</label>
             <input type="text" class="form-control" id="userName" name="userName" required>
           </div>
           <div class="mb-3 text-start">
@@ -50,8 +50,16 @@
             <input type="email" class="form-control" id="email" name="email" required>
           </div>
           <div class="mb-3 text-start">
-            <label for="address" class="form-label">العنوان</label>
-            <input type="text" class="form-control" id="address" name="address">
+            <label for="state" class="form-label">المحافظة</label>
+            <input type="text" class="form-control" id="state" name="state">
+          </div>
+          <div class="mb-3 text-start">
+            <label for="city" class="form-label">المدينة</label>
+            <input type="text" class="form-control" id="city" name="city">
+          </div>
+          <div class="mb-3 text-start">
+            <label for="street" class="form-label">الشارع</label>
+            <input type="text" class="form-control" id="street" name="street">
           </div>
           <div class="mb-3 text-start">
             <label for="password" class="form-label">كلمة المرور</label>
@@ -69,14 +77,14 @@
               <option value="3">صاحب عمل</option>
             </select>
           </div>
-
           <div class="mb-3 text-start">
             <label for="ssn" class="form-label">رقم الهوية</label>
-            <input type="number" class="form-control" id="ssn" name="ssn">
+            <input type="text" class="form-control" id="ssn" name="ssn">
           </div>
 
           <button type="submit" class="btn btn-custom w-100">إنشاء حساب</button>
         </form>
+
 
         <div class="links">
           <a href="./login.html">لديك حساب بالفعل؟ تسجيل الدخول</a>
