@@ -46,9 +46,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button class="btn btn-sm btn-primary view-btn" data-id="${post.id}">
             <i class="fas fa-eye me-1"></i>عرض
           </button>
-          <button class="btn btn-sm ${post.isActive ? 'btn-warning' : 'btn-success'} toggle-btn" data-id="${post.id}">
-            <i class="fas ${post.isActive ? 'fa-ban' : 'fa-check'} me-1"></i>${post.isActive ? 'تعطيل' : 'تفعيل'}
-          </button>
           <button class="btn btn-sm btn-danger delete-btn" data-id="${post.id}">
             <i class="fas fa-trash-alt me-1"></i>حذف
           </button>
@@ -62,39 +59,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
         window.location.href = `../worker/worker-job-details.html?id=${id}`;
-      });
-    });
-
-    // 🔘 زر تفعيل / تعطيل
-    document.querySelectorAll(".toggle-btn").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        const id = btn.dataset.id;
-        const badge = btn.closest("tr").querySelector("td span.badge");
-
-        try {
-          const res = await fetch(`http://tjob.tryasp.net/api/Admin/Requests/DeAcceptRequest/${id}`, {
-            method: "PATCH",
-            headers: { Authorization: `Bearer ${token}` }
-          });
-
-          if (res.ok) {
-            const isNowActive = badge.classList.contains("bg-danger");
-            badge.classList.remove("bg-danger", "bg-success");
-            badge.classList.add(isNowActive ? "bg-success" : "bg-danger");
-            badge.textContent = isNowActive ? "نشط" : "معطل";
-
-            btn.classList.remove("btn-success", "btn-warning");
-            btn.classList.add(isNowActive ? "btn-warning" : "btn-success");
-            btn.innerHTML = `
-              <i class="fas ${isNowActive ? 'fa-ban' : 'fa-check'} me-1"></i>
-              ${isNowActive ? 'تعطيل' : 'تفعيل'}
-            `;
-          } else {
-            alert("فشل في تحديث حالة المنشور");
-          }
-        } catch (err) {
-          alert("فشل الاتصال بالخادم");
-        }
       });
     });
 

@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <div>
             <strong>مسمى الوظيفة:</strong> ${request.title || "غير محدد"}<br/>
-            <small>التاريخ: ${request.dateCreated?.split("T")[0] || "غير متوفر"}</small>
+            <small>التاريخ: ${request.date?.split("T")[0] || "غير متوفر"}</small>
           </div>
           <span class="badge ${status.class} rounded-pill">${status.label}</span>
         </li>

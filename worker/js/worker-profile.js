@@ -42,14 +42,14 @@ document.getElementById('rating').textContent = data.avgRating || 0;
       document.getElementById("companyImagePreview").src = user.profileImageUrl;
     }
 
-    // عرض رابط تحميل CV إن وُجد
-    if (user.cvUrl) {
-      const cvContainer = document.getElementById("cvDownloadContainer");
-      const cvLink = document.getElementById("cvDownloadLink");
-      cvLink.href = user.cvUrl;
-      cvContainer.style.display = "block";
-    }
-
+    // ✅ عرض رابط تحميل CV إن وُجد
+if (user.file && user.file.startsWith("http")) {
+  const cvContainer = document.getElementById("cvDownloadContainer");
+  const cvLink = document.getElementById("cvDownloadLink");
+  cvLink.href = user.file;
+  cvLink.setAttribute("target", "_blank");
+  cvContainer.style.display = "block";
+}
   } catch (err) {
     console.error("خطأ:", err);
     Swal.fire({

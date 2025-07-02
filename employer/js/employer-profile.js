@@ -1,6 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
-  if (!token) return;
+  if (!token) {
+    Swal.fire({
+      icon: "warning",
+      title: "تنبيه",
+      text: "يجب تسجيل الدخول أولاً",
+      toast: true,
+      position: "top-end",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+    return;
+  }
 
   try {
     const res = await fetch("http://tjob.tryasp.net/api/Employer/Users", {
@@ -24,6 +35,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (user.img) {
       document.getElementById("companyImagePreview").src = user.img;
     }
+
+    // ✅ عرض رابط السيرة الذاتية
+    if (user.file && user.file.startsWith("http")) {
+  const cvContainer = document.getElementById("cvDownloadContainer");
+  const cvLink = document.getElementById("cvDownloadLink");
+  cvLink.href = user.file;
+  cvLink.setAttribute("target", "_blank");
+  cvContainer.style.display = "block";
+}
+
 
     document.querySelectorAll("input, textarea").forEach(el => el.setAttribute("disabled", true));
   } catch (err) {

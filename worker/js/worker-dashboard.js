@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // تعبئة البطاقات الثلاث
     document.getElementById("sentCount").textContent = data.totalSentApplications ?? 0;
-    document.getElementById("currentJobsCount").textContent = data.currentJobs ?? 0;
-    document.getElementById("completedJobsCount").textContent = data.completedJobs ?? 0;
+    document.getElementById("currentJobsCount").textContent = data.currentJobs?.length ?? 0;
+    document.getElementById("completedJobsCount").textContent = data.completedJobs?.length ?? 0;
+
 
     // تعبئة الجدول (إذا فيه وظائف)
     const tbody = document.querySelector("table tbody");
