@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchApplications() {
     try {
-      const response = await fetch("http://tjob.tryasp.net/api/Worker/Requests/sent-requests", {
+      const response = await fetch("http://tjob.tryasp.net/api/Employer/Requests/Applications", {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -14,26 +14,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbody.innerHTML = "";
 
       data.forEach((app, index) => {
-        const isAccepted = app.status === "Accepted";
+        const isAccepted = app.status === "Accepted"; // شرط الحالة المقبولة
+
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="text-black">${index + 1}</td>
-          <td class="text-black">${app.userName}</td>
+          <td class="text-black">${app.applicationUserFirstName} ${app.applicationUserLastName}</td>
           <td class="text-black">${app.requestTitle}</td>
-          <td class="text-black">${app.email}</td>
-          <td class="text-black">${app.applyDate?.split("T")[0]}</td>
+          <td class="text-black">${app.applicationUserEmail}</td>
+          <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
           <td>
-            <a href="${app.cvUrl}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
+            <a href="${app.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
               <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
             </a><br>
-            <button class="btn btn-sm btn-success text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'accept')">
+            <button class="btn btn-sm btn-success text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'accept')">
               <i class="fas fa-check me-1"></i>قبول
             </button>
-            <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'reject')">
+            <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'reject')">
               <i class="fas fa-times me-1"></i>رفض
-            </button><br>
+            </button>
             ${isAccepted ? `
-              <button class="btn btn-sm btn-secondary text-white mt-1" onclick="handleApplicationAction(${app.requestId}, '${app.userId}', 'complete')">
+              <br>
+              <button class="btn btn-sm btn-secondary text-white mt-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'complete')">
                 <i class="fas fa-check-double me-1"></i>إنهاء العمل
               </button>
             ` : ""}
@@ -41,6 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
         tbody.appendChild(tr);
       });
+
     } catch (err) {
       console.error("فشل في تحميل الطلبات:", err);
       Swal.fire({

@@ -73,15 +73,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const formData = new FormData();
     formData.append("RequestId", jobId);
-    formData.append("File", new Blob([])); // إرسال ملف فارغ كما يتطلب الـ API
 
     try {
-      const res = await fetch("http://tjob.tryasp.net/api/Worker/Requests/ApplyJob", {
+      const res = await fetch(`http://tjob.tryasp.net/api/Worker/Requests/ApplyJob?RequestId=${jobId}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
-        },
-        body: formData
+        }
       });
 
       if (!res.ok) throw new Error("فشل في إرسال الطلب");

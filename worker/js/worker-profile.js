@@ -21,17 +21,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!res.ok) throw new Error("فشل في جلب البيانات");
     const data = await res.json();
+   document.getElementById('countJob').textContent = data.postedJobsCount || 0;
+document.getElementById('rating').textContent = data.avgRating || 0;
+
 
     const user = data.userResponse;
     const skillsData = data.userSkillsResponse;
-
+    console.log(user)
     document.getElementById("Name").value = `${user.firstName || ""} ${user.lastName || ""}`;
     document.getElementById("email").value = user.email || "";
     document.getElementById("phone").value = user.phoneNumber || "";
     document.getElementById("location").value = `${user.city || ""} - ${user.street || ""}`;
     document.getElementById("skills").value = (skillsData.skills || []).join(", ");
     document.getElementById("description").value = skillsData.description || "";
+    const profileImge = document.getElementById('companyImagePreview');
 
+    profileImge.src = user.img
     // عرض الصورة الشخصية من الـ API
     if (user.profileImageUrl) {
       document.getElementById("companyImagePreview").src = user.profileImageUrl;
@@ -77,6 +82,8 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
   const profileImage = document.getElementById("profileImageInput").files[0];
   const cvFile = document.getElementById("cvInput").files[0];
 
+
+
   const [firstName = "", lastName = ""] = fullName.split(" ");
   const [city = "", street = ""] = location.split(" - ");
 
@@ -91,9 +98,9 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
   formData.append("SSN", "000000000");
   skills.forEach(skill => formData.append("SkillsOrInterests", skill));
   formData.append("Description", description);
-  formData.append("ProfileImage", profileImage || new File([""], "empty.jpg"));
+  formData.append("Img", profileImage || new File([""], "empty.jpg"));
   formData.append("CV", cvFile || new File([""], "empty.pdf"));
-
+  console.log(profileImage)
   try {
     const res = await fetch("http://tjob.tryasp.net/api/Worker/Users", {
       method: "PUT",

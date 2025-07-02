@@ -3,33 +3,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!token) return alert("الرجاء تسجيل الدخول أولاً");
 
   try {
-    const res = await fetch("http://tjob.tryasp.net/api/Employer/Requests", {
+    // الطلب الأول: إحضار إحصائيات من /api/Employer/Home
+    const statsRes = await fetch("http://tjob.tryasp.net/api/Employer/Home", {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
 
-    if (!res.ok) throw new Error("فشل تحميل الوظائف");
+    if (!statsRes.ok) throw new Error("فشل تحميل الإحصائيات");
 
-    const jobs = await res.json();
+    const stats = await statsRes.json();
 
-    // تحديث عدد الوظائف المنشورة
-    document.getElementById("publishedCount").textContent = jobs.length;
+    // عرض الإحصائيات
+    document.getElementById("publishedCount").textContent = stats.totalNumberOfRequests || 0;
+    document.getElementById("applicationsCount").textContent = stats.totalNumberOfResponses || 0;
+    document.getElementById("acceptedCount").textContent = stats.totalNumberOfAcceptedRequests || 0;
+    document.getElementById("rejectedCount").textContent = stats.totalNumberOfNotAcceptedRequests || 0;
 
-    // حساب الطلبات ومقبولة ومرفوضة
-    let totalApplications = 0;
-    let accepted = 0;
-    let rejected = 0;
-
-    jobs.forEach(job => {
-      totalApplications += job.applicationsCount || 0;
-      accepted += job.acceptedCount || 0;
-      rejected += job.rejectedCount || 0;
+    // الطلب الثاني: إحضار تفاصيل الوظائف
+    const jobsRes = await fetch("http://tjob.tryasp.net/api/Employer/Requests", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
-    document.getElementById("applicationsCount").textContent = totalApplications;
-    document.getElementById("acceptedCount").textContent = accepted;
-    document.getElementById("rejectedCount").textContent = rejected;
+    if (!jobsRes.ok) throw new Error("فشل تحميل الوظائف");
+
+    const jobs = await jobsRes.json();
 
     // عرض آخر 3 وظائف
     const tbody = document.querySelector("tbody");
