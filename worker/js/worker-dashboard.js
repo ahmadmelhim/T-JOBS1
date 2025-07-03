@@ -14,21 +14,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await response.json();
 
     // تعبئة البطاقات الثلاث
-    document.getElementById("sentCount").textContent = data.totalSentApplications ?? 0;
-    document.getElementById("currentJobsCount").textContent = data.currentJobs?.length ?? 0;
-    document.getElementById("completedJobsCount").textContent = data.completedJobs?.length ?? 0;
+    document.getElementById("sentCount").textContent = data.sentApplications ?? 0;
+    document.getElementById("currentJobsCount").textContent = data.currentJobs ?? 0;
+    document.getElementById("completedJobsCount").textContent = data.completedJobs ?? 0;
 
-
-    // تعبئة الجدول (إذا فيه وظائف)
+    // تعبئة الجدول بآخر الوظائف من requiredJobs
     const tbody = document.querySelector("table tbody");
-    tbody.innerHTML = ""; // تفريغ محتوى الجدول
+    tbody.innerHTML = "";
 
-    data.lastJobs?.forEach((job, index) => {
+    data.requiredJobs?.forEach((job, index) => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${index + 1}</td>
-        <td>${job.title}</td>
-        <td><span class="badge ${job.status === 'جارية' ? 'bg-success' : 'bg-secondary'}">${job.status}</span></td>
+        <td>${job.title || "-"}</td>
+        <td><span class="badge ${job.status === 'جارية' ? 'bg-success' : 'bg-secondary'}">${job.status || "-"}</span></td>
         <td>${job.startDate?.split("T")[0] ?? "-"}</td>
       `;
       tbody.appendChild(tr);

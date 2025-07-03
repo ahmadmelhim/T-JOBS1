@@ -14,22 +14,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await response.json();
       const tbody = document.querySelector("tbody");
       tbody.innerHTML = "";
+      
 
       data.forEach((project, index) => {
+        const workerName = `${project.applicationUserFirstName} ${project.applicationUserLastName}`;
+        const jobTitle = project.requestTitle;
+
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${index + 1}</td>
-          <td class="text-black">${project.userName}</td>
-          <td class="text-black">${project.requestTitle}</td>
-          <td class="text-black">${project.email}</td>
-          <td class="text-black">${project.acceptDate?.split("T")[0]}</td>
+          <td class="text-black">${workerName}</td>
+          <td class="text-black">${jobTitle}</td>
+          <td class="text-black">${project.applicationUserEmail}</td>
+          <td class="text-black">${project.applyDateTime?.split("T")[0]}</td>
           <td>
-            <a href="../worker/worker-profile.html?id=${project.userId}" class="btn btn-sm btn-primary text-white">
+            <a href="../worker/worker-profile.html?id=${project.applicationUserId}" class="btn btn-sm btn-primary text-white">
               <i class="fa-solid fa-eye me-1"></i>عرض الصفحة
             </a>
           </td>
           <td>
-            <a href="./rate-workers.html?userId=${project.userId}&requestId=${project.requestId}" class="btn btn-sm btn-warning text-white">
+            <a href="./rate-workers.html?userId=${project.applicationUserId}&requestId=${project.requestId}&userName=${encodeURIComponent(workerName)}&jobTitle=${encodeURIComponent(jobTitle)}" class="btn btn-sm btn-warning text-white">
               <i class="fa-solid fa-star me-1"></i>قيّم العامل
             </a>
           </td>

@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return date.toISOString().split("T")[0];
   }
 
+  function translateStatus(status) {
+    switch (status) {
+      case 0: return { text: "متاحة", class: "bg-primary" };
+      case 1: return { text: "مقبولة", class: "bg-success" };
+      case 2: return { text: "مرفوضة", class: "bg-danger" };
+      case 3: return { text: "مكتملة", class: "bg-secondary" };
+      default: return { text: "غير معروفة", class: "bg-dark" };
+    }
+  }
+
   async function loadEmployerJobs() {
     try {
       const token = localStorage.getItem("token");
@@ -26,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       jobs.forEach((job, index) => {
+        const status = translateStatus(job.requestStatus);
+
         const row = document.createElement("tr");
         row.innerHTML = `
           <td class="text-black-50">${index + 1}</td>
@@ -34,9 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td class="text-black-50">${formatDate(job.dateTime)}</td>
           <td class="text-black-50">${job.city}</td>
           <td>
-            <span class="badge ${job.requestStatus === 0 ? 'bg-success' : 'bg-danger'}">
-              ${job.requestStatus === 0 ? 'نشطة' : 'منتهية'}
-            </span>
+            <span class="badge ${status.class}">${status.text}</span>
           </td>
           <td>
             <button class="btn btn-sm btn-primary" onclick="editJob(${job.id})">تعديل</button>

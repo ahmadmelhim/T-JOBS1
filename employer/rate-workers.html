@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,71 +11,31 @@
   <link rel="stylesheet" href="../assert/css/base.css">
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
-<body>
-<button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
-  <i class="fa fa-bars fs-4"></i>
-</button>
 
-<div class="container-fluid">
+<body>
+  <button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
+    <i class="fa fa-bars fs-4"></i>
+  </button>
+
+  <div class="container-fluid">
     <div class="flex-nowrap">
-<div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
           <div class="mb-4 w-100 text-center">
             <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
           </div>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
-            <li class="nav-item w-100">
-              <a href="./dashboard-employer.html" class="nav-link text-black w-100 fw-bold ">
-                <i class="fa-solid fa-house me-2"></i>
-                <span class="d-none d-sm-inline">لوحة التحكم</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./employer-profile.html" class="nav-link text-black w-100 ">
-                <i class="fa-solid fa-user me-2"></i>
-                <span class="d-none d-sm-inline">الملف الشخصي </span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./add-job.html" class="nav-link text-black w-100">
-                <i class="fa-solid fa-briefcase me-2"></i>
-                <span class="d-none d-sm-inline">نشر وظيفة جديدة </span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./employer-jobs.html" class="nav-link text-black w-100 ">
-                <i class="fa-solid fa-list-check me-2"></i>
-                <span class="d-none d-sm-inline">إدارة الوظائف المنشورة</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./job-applications.html" class="nav-link text-black w-100 ">
-                <i class="fa-solid fa-file-lines me-2"></i>
-                <span class="d-none d-sm-inline">طلبات التوظيف</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./reviews.html" class="nav-link text-black w-100 active">
-                <i class="fa-solid fa-star-half-stroke me-2"></i>
-              <span class="d-none d-sm-inline"> تقييماتي</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-            <a href="./accepted-workers.html" class="nav-link text-black w-100 ">
-              <i class="fa-solid fa-folder-open me-2"></i>
-              <span class="d-none d-sm-inline">سجل المشاريع</span>
-            </a>
-           </li>
-            <li class="nav-item mt-4 w-100">
-              <a href="../index.html" class="nav-link text-black w-100 fw-bold">
-                <i class="fa-solid fa-globe me-2"></i>
-                <span class="d-none d-sm-inline">الصفحة الرئيسية</span>
-              </a>
-            </li>
+            <li class="nav-item w-100"><a href="./dashboard-employer.html" class="nav-link text-black w-100 fw-bold "><i class="fa-solid fa-house me-2"></i><span class="d-none d-sm-inline">لوحة التحكم</span></a></li>
+            <li class="nav-item w-100"><a href="./employer-profile.html" class="nav-link text-black w-100 "><i class="fa-solid fa-user me-2"></i><span class="d-none d-sm-inline">الملف الشخصي </span></a></li>
+            <li class="nav-item w-100"><a href="./add-job.html" class="nav-link text-black w-100"><i class="fa-solid fa-briefcase me-2"></i><span class="d-none d-sm-inline">نشر وظيفة جديدة </span></a></li>
+            <li class="nav-item w-100"><a href="./employer-jobs.html" class="nav-link text-black w-100 "><i class="fa-solid fa-list-check me-2"></i><span class="d-none d-sm-inline">إدارة الوظائف المنشورة</span></a></li>
+            <li class="nav-item w-100"><a href="./job-applications.html" class="nav-link text-black w-100 "><i class="fa-solid fa-file-lines me-2"></i><span class="d-none d-sm-inline">طلبات التوظيف</span></a></li>
+            <li class="nav-item w-100"><a href="./reviews.html" class="nav-link text-black w-100 active"><i class="fa-solid fa-star-half-stroke me-2"></i><span class="d-none d-sm-inline"> تقييماتي</span></a></li>
+            <li class="nav-item w-100"><a href="./accepted-workers.html" class="nav-link text-black w-100 "><i class="fa-solid fa-folder-open me-2"></i><span class="d-none d-sm-inline">سجل المشاريع</span></a></li>
+            <li class="nav-item mt-4 w-100"><a href="../index.html" class="nav-link text-black w-100 fw-bold"><i class="fa-solid fa-globe me-2"></i><span class="d-none d-sm-inline">الصفحة الرئيسية</span></a></li>
           </ul>
-        </div>
+        </div>
       </div>
-
 
       <!-- المحتوى الرئيسي -->
       <div id="Body">
@@ -82,12 +43,16 @@
           <h2 class="fw-bold mb-4 text-black mt-5 text-center">تقييم العامل بعد إنجاز المهمة</h2>
 
           <div class="card shadow-sm">
-           
             <div class="card-body">
               <form id="ratingForm">
                 <div class="mb-3">
-                  <label for="workerName" class="form-label text-black">اسم العامل:</label>
-                  <input type="text" class="form-control" id="workerName" placeholder="أدخل اسم العامل" required>
+                  <label class="form-label text-black">اسم العامل:</label>
+                  <p id="workerName" class="form-control bg-light fw-bold text-black mb-0"></p>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label text-black">الوظيفة:</label>
+                  <p id="jobTitle" class="form-control bg-light fw-bold text-black mb-0"></p>
                 </div>
 
                 <div class="mb-3">
@@ -118,7 +83,12 @@
 
     </div>
   </div>
-<script src="./js/employer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/employer.js"></script>
+  <script src="./js/rate-workers.js"></script>
 </body>
 </html>
+
+

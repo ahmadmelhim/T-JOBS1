@@ -68,6 +68,6 @@ function getStatusBadge(status) {
     case "مرفوض":
       return { label: "مرفوض", class: "bg-danger" };
     default:
-      return { label: "غير معروف", class: "bg-secondary" };
+      return { label: " منتهية", class: "bg-secondary" };
   }
 }

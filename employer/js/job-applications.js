@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbody.innerHTML = "";
 
       data.forEach((app, index) => {
-        const isAccepted = app.status === "Accepted"; // شرط الحالة المقبولة
+        const isAccepted = app.userRequestStatus === 1;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${app.requestTitle}</td>
           <td class="text-black">${app.applicationUserEmail}</td>
           <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
+          <td class="text-black">${getStatusText(app.userRequestStatus)}</td>
           <td>
             <a href="${app.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
               <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
@@ -55,6 +56,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         timer: 3000,
         timerProgressBar: true
       });
+    }
+  }
+
+  function getStatusText(status) {
+    switch (status) {
+      case 0: return "قيد الانتظار";
+      case 1: return "مقبول";
+      case 2: return "مرفوض";
+      case 3: return "مكتمل";
+      default: return "غير معروف";
     }
   }
 

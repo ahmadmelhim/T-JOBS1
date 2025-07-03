@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <title>طلبات التوظيف </title>
@@ -9,19 +10,21 @@
   <link rel="stylesheet" href="../assert/css/base.css" />
   <link rel="stylesheet" href="../assert/css/main.css" />
 </head>
+
 <body>
-<button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
-  <i class="fa fa-bars fs-4"></i>
-</button>
+  <button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
+    <i class="fa fa-bars fs-4"></i>
+  </button>
   <div class="container-fluid">
     <div class="flex-nowrap">
       <!-- الشريط الجانبي -->
-<div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
           <div class="mb-4 w-100 text-center">
             <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
           </div>
-          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4"
+            id="menu">
             <li class="nav-item w-100">
               <a href="./dashboard-employer.html" class="nav-link text-black w-100 fw-bold ">
                 <i class="fa-solid fa-house me-2"></i>
@@ -55,14 +58,14 @@
             <li class="nav-item w-100">
               <a href="./reviews.html" class="nav-link text-black w-100">
                 <i class="fa-solid fa-star-half-stroke me-2"></i>
-              <span class="d-none d-sm-inline"> تقييماتي</span>
+                <span class="d-none d-sm-inline"> تقييماتي</span>
               </a>
             </li>
             <li class="nav-item w-100">
-            <a href="./accepted-workers.html" class="nav-link text-black w-100 ">
-              <i class="fa-solid fa-folder-open me-2"></i>
-              <span class="d-none d-sm-inline">سجل المشاريع</span>
-            </a>
+              <a href="./accepted-workers.html" class="nav-link text-black w-100 ">
+                <i class="fa-solid fa-folder-open me-2"></i>
+                <span class="d-none d-sm-inline">سجل المشاريع</span>
+              </a>
             </li>
             <li class="nav-item mt-4 w-100">
               <a href="../index.html" class="nav-link text-black w-100 fw-bold">
@@ -71,7 +74,8 @@
               </a>
             </li>
           </ul>
-        </div>
+            
+        </div>
       </div>
 
       <!-- المحتوى -->
@@ -81,31 +85,33 @@
 
           <div class="table-responsive">
             <table class="table table-hover text-center align-middle">
-                <thead class="table-light text-black">
-                  <tr>
-                    <th class="text-black">#</th>
-                    <th class="text-black">اسم العامل</th>
-                    <th class="text-black">الوظيفة المتقدم لها</th>
-                    <th class="text-black">البريد الإلكتروني</th>
-                    <th class="text-black">تاريخ التقديم</th>
-                    <th class="text-black">الإجراء</th>
-                  </tr>
-                </thead>
-                 <tbody id="applications-body">
-                    <!-- يتم تعبئته من خلال job-applications.js -->
-                  </tbody>
-              </table>
-              
+              <thead class="table-light">
+                <tr>
+                  <th class="text-black">#</th>
+                  <th class="text-black">اسم العامل</th>
+                  <th class="text-black">الوظيفة المتقدم لها</th>
+                  <th class="text-black">البريد الإلكتروني</th>
+                  <th class="text-black">تاريخ التقديم</th>
+                  <th class="text-black">الحالة</th> 
+                  <th class="text-black">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="applications-body">
+                <!-- يتم تعبئته من خلال job-applications.js -->
+              </tbody>
+            </table>
+
           </div>
 
         </div>
       </div>
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./js/employer.js"></script>
-<script src="./js/job-applications.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/employer.js"></script>
+  <script src="./js/job-applications.js"></script>
 
 </body>
+
 </html>
