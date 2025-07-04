@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       case 1: return { text: "مقبولة", class: "bg-success" };
       case 2: return { text: "مرفوضة", class: "bg-danger" };
       case 3: return { text: "مكتملة", class: "bg-secondary" };
-      default: return { text: "غير معروفة", class: "bg-dark" };
+      default: return { text: "منهية  ", class: "bg-danger" };
     }
   }
 

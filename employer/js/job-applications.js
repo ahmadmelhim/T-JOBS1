@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbody.innerHTML = "";
 
       data.forEach((app, index) => {
-        const isAccepted = app.userRequestStatus === 1;
+        const status = app.userRequestStatus;
+        const isAccepted = status === 1;
+        const isCompleted = status === 3;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -23,21 +25,22 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${app.requestTitle}</td>
           <td class="text-black">${app.applicationUserEmail}</td>
           <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
-          <td class="text-black">${getStatusText(app.userRequestStatus)}</td>
+          <td class="text-black">${getStatusText(status)}</td>
           <td>
             <a href="${app.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
               <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
             </a><br>
-            <button class="btn btn-sm btn-success text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'accept')">
-              <i class="fas fa-check me-1"></i>قبول
-            </button>
-            <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'reject')">
-              <i class="fas fa-times me-1"></i>رفض
-            </button>
-            ${isAccepted ? `
-              <br>
+            ${isAccepted && !isCompleted ? `
               <button class="btn btn-sm btn-secondary text-white mt-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'complete')">
                 <i class="fas fa-check-double me-1"></i>إنهاء العمل
+              </button>
+            ` : ""}
+            ${!isAccepted && !isCompleted ? `
+              <button class="btn btn-sm btn-success text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'accept')">
+                <i class="fas fa-check me-1"></i>قبول
+              </button>
+              <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'reject')">
+                <i class="fas fa-times me-1"></i>رفض
               </button>
             ` : ""}
           </td>
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         timerProgressBar: true
       });
 
-      await fetchApplications();
+      await fetchApplications(); // تحديث القائمة تلقائيًا
     } catch (error) {
       console.error("خطأ:", error);
       Swal.fire({

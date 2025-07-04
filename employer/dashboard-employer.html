@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <title>لوحة تحكم صاحب العمل </title>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="../assert/css/base.css" />
   <link rel="stylesheet" href="../assert/css/main.css" />
 </head>
+
 <body>
   <button class="btn bg-secColor d-md-none m-3" id="toggleMenu">
     <i class="fa fa-bars fs-4"></i>
@@ -22,7 +24,8 @@
           <div class="mb-4 w-100 text-center">
             <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
           </div>
-          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4" id="menu">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4"
+            id="menu">
             <li class="nav-item w-100">
               <a href="./dashboard-employer.html" class="nav-link text-black w-100 fw-bold active">
                 <i class="fa-solid fa-house me-2"></i>
@@ -56,7 +59,7 @@
             <li class="nav-item w-100">
               <a href="./reviews.html" class="nav-link text-black w-100">
                 <i class="fa-solid fa-star-half-stroke me-2"></i>
-              <span class="d-none d-sm-inline"> تقييماتي</span>
+                <span class="d-none d-sm-inline"> تقييماتي</span>
               </a>
             </li>
             <li class="nav-item w-100">
@@ -103,10 +106,9 @@
             <div class="col-md-4">
               <div class="card text-black text-center p-4 shadow-lg">
                 <div class="card-body">
-                  <i class="fas fa-chart-bar fa-2x mb-2"></i>
-                  <h5 class="card-title mt-2">إحصائيات</h5>
-                  <p class="mb-1">مقبولة: <span id="acceptedCount">0</span></p>
-                  <p class="mb-0">مرفوضة: <span id="rejectedCount">0</span></p>
+                  <i class="fas fa-check-circle fa-2x mb-2"></i>
+                  <h5 class="card-title mt-2">الوظائف المكتملة</h5>
+                  <h3 id="completedCount">0</h3>
                 </div>
               </div>
             </div>
@@ -122,7 +124,7 @@
                     <tr>
                       <th class="text-black">#</th>
                       <th class="text-black">المسمى الوظيفي</th>
-                      <th class="text-black">عدد الطلبات</th>
+                      <th class="text-black">المدينة </th>
                       <th class="text-black">الحالة</th>
                       <th class="text-black">تاريخ النشر</th>
                     </tr>
@@ -144,4 +146,5 @@
   <script src="./js/employer.js"></script>
   <script src="./js/dashboard-employer.js"></script>
 </body>
+
 </html>

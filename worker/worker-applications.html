@@ -20,7 +20,7 @@
   <div class="container-fluid">
     <div>
       <!-- الشريط الجانبي -->
-      <div id="sidebarMenu" class="px-sm-2 bg-secColor min-vh-100 d-none">
+      <div id="sidebarMenu" class="col-md-2 px-sm-2 bg-secColor min-vh-100 d-none d-md-block">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
           <div class="mb-4 w-100 text-center">
             <img src="../assert/image/logo.png" alt="T JOBS" class="img-fluid w-50">
@@ -28,7 +28,7 @@
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 gap-4"
             id="menu">
             <li class="nav-item w-100">
-              <a href="./worker-dashboard.html" class="nav-link text-black w-100 fw-bold ">
+              <a href="./worker-dashboard.html" class="nav-link text-black w-100 fw-bold">
                 <i class="fa-solid fa-house me-2"></i>
                 <span class="d-none d-sm-inline">لوحة التحكم</span>
               </a>
@@ -42,25 +42,26 @@
             <li class="nav-item w-100">
               <a href="./worker-applications.html" class="nav-link text-black w-100 active">
                 <i class="fa-solid fa-paper-plane me-2"></i>
-                <span class="d-none d-sm-inline ">طلبات العمل المرسلة</span>
+                <span class="d-none d-sm-inline">طلبات العمل المرسلة</span>
               </a>
             </li>
+
             <li class="nav-item w-100">
-              <a href="./rate-employers.html" class="nav-link text-black w-100">
-                <i class="fa-solid fa-star me-2"></i>
-                <span class="d-none d-sm-inline">تقييم أصحاب العمل</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="./current-jobs.html" class="nav-link text-black w-100">
+              <a href="./current-jobs.html" class="nav-link text-black w-100 ">
                 <i class="fa-solid fa-briefcase me-2"></i>
                 <span class="d-none d-sm-inline">الوظائف الحالية</span>
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="./worker-completed-jobs.html" class="nav-link text-black w-100 ">
+              <a href="./worker-reviews.html" class="nav-link text-black w-100">
+                <i class="fa-solid fa-star me-2"></i>
+                <span class="d-none d-sm-inline">تقييماتي</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="./worker-completed-jobs.html" class="nav-link text-black w-100">
                 <i class="fa-solid fa-check-circle me-2"></i>
-                <span class="d-none d-sm-inline"> سجل الوظائف المنتهية</span>
+                <span class="d-none d-sm-inline"> سجل المشاريع</span>
               </a>
             </li>
 
@@ -73,6 +74,7 @@
           </ul>
         </div>
       </div>
+
 
       <!-- محتوى طلبات العمل -->
       <div class="py-5 px-4" id="Body">

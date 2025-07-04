@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await response.json();
       const tbody = document.querySelector("tbody");
       tbody.innerHTML = "";
-      
+
 
       data.forEach((project, index) => {
         const workerName = `${project.applicationUserFirstName} ${project.applicationUserLastName}`;
@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${project.applicationUserEmail}</td>
           <td class="text-black">${project.applyDateTime?.split("T")[0]}</td>
           <td>
-            <a href="../worker/worker-profile.html?id=${project.applicationUserId}" class="btn btn-sm btn-primary text-white">
-              <i class="fa-solid fa-eye me-1"></i>عرض الصفحة
+            <a href="${project.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white">
+              <i class="fa-solid fa-file-lines me-1"></i>السيرة الذاتية
             </a>
           </td>
           <td>
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             </a>
           </td>
         `;
+
         tbody.appendChild(tr);
       });
     } catch (error) {

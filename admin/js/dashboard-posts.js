@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tbody = document.querySelector("table tbody");
 
   try {
-    // 1️⃣ جلب المستخدمين
+    // ⿡ جلب المستخدمين
     const usersRes = await fetch("http://tjob.tryasp.net/api/Admin/Users", {
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       userMap[user.id] = fullName || "غير معروف";
     });
 
-    // 2️⃣ جلب المنشورات
+    // ⿢ جلب المنشورات
     const res = await fetch("http://tjob.tryasp.net/api/Admin/Requests", {
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -30,6 +30,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       const userId = post.applicationUserId;
       const userName = userMap[userId] || "غير معروف";
 
+      //  تحديد حالة المنشور بناءً على requestStatus
+      let statusText = "غير محددة";
+      let badgeClass = "bg-warning";
+      if (post.requestStatus === 1) {
+        statusText = "متاحة";
+        badgeClass = "bg-success";
+      } else if (post.requestStatus === 4) {
+        statusText = "منتهية";
+        badgeClass = "bg-secondary";
+      }
+
       const row = document.createElement("tr");
       row.innerHTML = `
         <td class="text-black-50">${index + 1}</td>
@@ -38,8 +49,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         <td class="text-black-50">${post.requestTypeName || "---"}</td>
         <td class="text-black-50">${post.publishDateTime?.split("T")[0]}</td>
         <td>
-          <span class="badge ${post.isActive ? 'bg-success' : 'bg-danger'}">
-            ${post.isActive ? 'نشط' : 'معطل'}
+          <span class="badge ${badgeClass}">
+            ${statusText}
           </span>
         </td>
         <td>
@@ -54,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbody.appendChild(row);
     });
 
-    // 🔘 زر عرض التفاصيل
+    //  زر عرض التفاصيل
     document.querySelectorAll(".view-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
@@ -62,30 +73,76 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // 🔘 زر الحذف
+    //  زر الحذف
     document.querySelectorAll(".delete-btn").forEach(btn => {
       btn.addEventListener("click", async () => {
         const id = btn.dataset.id;
-        if (!confirm("هل أنت متأكد من حذف المنشور؟")) return;
 
-        try {
-          const res = await fetch(`http://tjob.tryasp.net/api/Admin/Requests/${id}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (res.ok) {
-            btn.closest("tr").remove();
-          } else {
-            alert("فشل في حذف المنشور");
+        Swal.fire({
+          title: "هل أنت متأكد؟",
+          text: "لن تتمكن من استرجاع المنشور بعد حذفه!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "نعم، احذفه!",
+          cancelButtonText: "إلغاء",
+          reverseButtons: true
+        }).then(async (result) => {
+          if (!result.isConfirmed) return;
+
+          try {
+            const res = await fetch(`http://tjob.tryasp.net/api/Admin/Requests/${id}`, {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            if (res.ok) {
+              btn.closest("tr").remove();
+              Swal.fire({
+                icon: "success",
+                title: "تم الحذف",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "فشل في حذف المنشور",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+              });
+            }
+          } catch {
+            Swal.fire({
+              icon: "error",
+              title: "فشل الاتصال بالخادم",
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true
+            });
           }
-        } catch {
-          alert("فشل الاتصال بالخادم");
-        }
+        });
       });
     });
+
 
   } catch (err) {
     console.error(err);
     tbody.innerHTML = '<tr><td colspan="8" class="text-danger">فشل في تحميل البيانات</td></tr>';
+    Swal.fire({
+      icon: "error",
+      title: "خطأ في تحميل البيانات",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
   }
 });

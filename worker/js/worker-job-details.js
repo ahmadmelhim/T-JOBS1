@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       icon: "error",
       position: "top-end",
       toast: true,
-      timer: 3000,
+      timer: 1500,
       showConfirmButton: false
     });
     return;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const token = localStorage.getItem("token");
   try {
-    const res = await fetch(`http://tjob.tryasp.net/api/Requests/${jobId}`, {
+    const res = await fetch(`http://tjob.tryasp.net/api/Worker/Requests/${jobId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -33,7 +33,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // تعبئة البيانات في الصفحة
-    document.getElementById("jobImage").src = imgPath;
+    const jobImage = document.getElementById("jobImage");
+    const loader = document.getElementById("imageLoader");
+    jobImage.onload = () => {
+      loader.style.display = "none";
+      jobImage.hidden = false;
+    };
+    jobImage.onerror = () => {
+      loader.innerHTML = `<div class="text-danger small">فشل تحميل الصورة</div>`;
+    };
+    jobImage.src = imgPath;
+    document.getElementById("jobEmployer").textContent = `${job.applicationUserFirstName} ${job.applicationUserLastName}`;
+    document.getElementById("employerRate").textContent = `${job.applicationUserAvgRate} / 5`;
     document.getElementById("modalFullImage").src = imgPath;
     document.getElementById("jobTitle").textContent = job.title;
     document.getElementById("jobDescription").textContent = job.description;
@@ -65,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         icon: "warning",
         position: "top-end",
         toast: true,
-        timer: 3000,
+        timer: 1500,
         showConfirmButton: false
       });
       return;
@@ -90,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         icon: "success",
         position: "top-end",
         toast: true,
-        timer: 3000,
+        timer: 1500,
         showConfirmButton: false
       });
     } catch (err) {
@@ -101,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         icon: "error",
         position: "top-end",
         toast: true,
-        timer: 3000,
+        timer: 1500,
         showConfirmButton: false
       });
     }
