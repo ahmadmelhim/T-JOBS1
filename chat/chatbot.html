@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <title>الشات بوت</title>
@@ -10,76 +11,70 @@
   <link rel="stylesheet" href="../assert/css/base.css">
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg bg-white fixed-top">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand" href="../index.html">
-      <img src="../assert/image/logo.png" alt="شعار الموقع" class="img-fluid" >
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto gap-2">
-        <li class="nav-item"><a class="nav-link" href="./messages.html"><i class="fa-solid fa-message"></i> المحادثات </a></li>
-        <li class="nav-item"><a class="nav-link" href="./chatbot.html"><i class="fa-solid fa-robot"></i> الشات بوت</a></li>
-        <li class="nav-item"><a class="nav-link" href="./notifications.html"><i class="fa-solid fa-bell"></i> الإشعارات</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container">
-  <div class="flex-nowrap mt-10">
-    <!-- محتوى الشات بوت -->
-    <div class="p-0 d-flex flex-grow-1" style="height: 60vh;">
-      <div class="d-flex flex-grow-1 shadow-lg bg-white rounded-3 my-4 mx-3 overflow-hidden" >
-        <div class="col-12 d-flex flex-column bg-light" >
-          <div class="p-3 bg-primary text-white d-flex align-items-center rounded-top">
-            <i class="fa-solid fa-robot fa-lg me-2"></i>
-            <h5 class="mb-0 fw-bold">الشات بوت - المساعد الذكي</h5>
-          </div>
-          <div class="p-3 flex-grow-1 overflow-auto chat-messages-scroll" id="chatBox">
-            <div class="d-flex justify-content-start mb-3">
-              <div class="p-3 bg-secondary text-white rounded-3 shadow-sm">
-                مرحبًا! كيف يمكنني مساعدتك اليوم؟
-              </div>
-            </div>
-          </div>
-          <form class="p-3 border-top bg-white rounded-bottom" id="chatForm">
-            <div class="input-group">
-              <input type="text" id="chatInput" class="form-control rounded-pill border-0 bg-light-subtle py-2 ps-3 pe-5 text-dark" placeholder="اكتب رسالتك..." autocomplete="off" required />
-              <button type="submit" class="btn btn-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<footer class="bg-secColor pt-5 pb-3 mt-5">
+  <nav class="bg-mainColor shadow fixed-top">
+    <div id="navbar" class="container"></div>
+  </nav>
   <div class="container">
-    <div class="row text-center text-md-start align-items-center justify-content-between">
-      <div class="col-12 col-md-4 mb-3 mb-md-0">
-        <img src="../assert/image/logo.png" class="img-fluid w-50" alt="شعار">
-      </div>
-      <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
-        <p class="mb-0">رقم التواصل<br>0595569887</p>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+    <div class="flex-nowrap mt-10">
+      <!-- محتوى الشات بوت -->
+      <div class="p-0 d-flex flex-grow-1" style="height: 100vh;">
+        <div class="d-flex flex-grow-1 shadow-lg bg-white rounded-3 my-4 mx-3 overflow-hidden">
+          <div class="col-12 d-flex flex-column bg-light">
+            <div class="p-3 bg-primary text-white d-flex align-items-center rounded-top">
+              <i class="fa-solid fa-robot fa-lg me-2"></i>
+              <h5 class="mb-0 fw-bold">الشات بوت - المساعد الذكي</h5>
+            </div>
+            <div class="p-3 flex-grow-1 overflow-auto chat-messages-scroll" id="chatBox">
+              <!-- <div class="message">
+                <div class="p-3 bg-secondary text-white rounded-3 shadow-sm">
+                  مرحبًا! كيف يمكنني مساعدتك اليوم؟
+                </div>
+              </div> -->
+            </div>
+            <form class="p-3 border-top bg-white rounded-bottom" id="chatForm">
+              <div class="input-group">
+                <input type="text" id="chatInput"
+                  class="form-control rounded-pill border-0 bg-light-subtle py-2 ps-3 pe-5 text-dark"
+                  placeholder="اكتب رسالتك..." autocomplete="off"  />
+                <button type="submit"
+                  class="btn btn-primary rounded-circle ms-2 d-flex align-items-center justify-content-center"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <hr class="my-4">
-    <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
   </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <footer class="bg-secColor pt-5 pb-3 mt-5">
+    <div class="container">
+      <div class="row text-center text-md-start align-items-center justify-content-between">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+          <img src="../assert/image/logo.png" class="img-fluid w-50" alt="شعار">
+        </div>
+        <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
+          <p class="mb-0">رقم التواصل<br>0595569887</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./../assert/js/navbar.js"></script>
+  <script src="./chat.js"></script>
 </body>
+
 </html>
