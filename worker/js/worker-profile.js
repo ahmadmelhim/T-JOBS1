@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!res.ok) throw new Error("فشل في جلب البيانات");
     const data = await res.json();
-   document.getElementById('countJob').textContent = data.postedJobsCount || 0;
-document.getElementById('rating').textContent = data.avgRating || 0;
+document.getElementById('rating').textContent = `${(data.avgRating || 0).toFixed(1)} / 5`;
 
 
     const user = data.userResponse;

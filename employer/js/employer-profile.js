@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("phone").value = user.phoneNumber || "";
     document.getElementById("location").value = `${user.city || ""} ${user.street || ""}`;
     document.getElementById("description").value = interests?.description || "";
-    document.getElementById("jobsCount").textContent = `${data.postedJobsCount || 0} وظيفة`;
-    document.querySelector(".card-text.fs-4.fw-bold").textContent = `${data.avgRating || 0} / 5`;
+    document.querySelector(".card-text.fs-4.fw-bold").textContent = `${(data.avgRating || 0).toFixed(1)} / 5`;
 
     if (user.img) {
       document.getElementById("companyImagePreview").src = user.img;

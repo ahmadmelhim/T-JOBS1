@@ -1,81 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
+  const form = document.getElementById("ratingForm");
+  const ratingInput = document.getElementById("ratingValue");
+  const stars = document.querySelectorAll("#starRating i");
 
-  // استخراج القيم من الرابط
+  // استخراج المعرفات والبيانات من الرابط
   const params = new URLSearchParams(window.location.search);
-  const workerIdParam = params.get("workerId");
-  const requestIdParam = params.get("requestId");
+  const employerId = params.get("userId");
+  const requestId = params.get("requestId");
+  const employerName = params.get("userName");
+  const jobTitle = params.get("jobTitle");
 
-  if (workerIdParam) document.getElementById("workerId").value = workerIdParam;
-  if (requestIdParam) document.getElementById("requestId").value = requestIdParam;
+  // عرض اسم صاحب العمل والوظيفة إن وجدوا
+  const nameElement = document.getElementById("employerName");
+  if (employerName && nameElement) nameElement.textContent = employerName;
+  if (jobTitle && jobElement) jobElement.textContent = jobTitle;
 
-  // تفعيل التقييم بالنجوم
-  document.querySelectorAll("#starRating i").forEach(star => {
+  // ✅ تغيير لون النجوم عند الضغط
+  stars.forEach(star => {
     star.addEventListener("click", () => {
-      const value = parseInt(star.dataset.value);
-      document.getElementById("ratingValue").value = value;
+      const value = star.getAttribute("data-value");
+      ratingInput.value = value;
 
-      document.querySelectorAll("#starRating i").forEach(s => {
+      stars.forEach(s => {
         s.classList.remove("fa-solid", "text-warning");
         s.classList.add("fa-regular", "text-secondary");
-        if (parseInt(s.dataset.value) <= value) {
-          s.classList.remove("fa-regular", "text-secondary");
-          s.classList.add("fa-solid", "text-warning");
-        }
       });
+
+      for (let i = 0; i < stars.length; i++) {
+        if (parseInt(stars[i].getAttribute("data-value")) <= value) {
+          stars[i].classList.add("fa-solid", "text-warning");
+          stars[i].classList.remove("fa-regular", "text-secondary");
+        }
+      }
     });
   });
 
   // إرسال التقييم
-  document.getElementById("ratingForm").addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const workerId = document.getElementById("workerId").value.trim();
-    const requestId = parseInt(document.getElementById("requestId").value);
-    const rate = parseFloat(document.getElementById("ratingValue").value);
-    const note = document.getElementById("comment").value.trim();
+    const note = document.getElementById("comment").value;
+    const rate = parseFloat(ratingInput.value);
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري الإرسال...";
+
+    if (!employerId || !requestId || isNaN(rate) || rate <= 0) {
+      Swal.fire("خطأ", "يجب تعبئة جميع الحقول بشكل صحيح", "error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "إرسال التقييم";
+      return;
+    }
 
     try {
-      const res = await fetch("http://tjob.tryasp.net/api/Employer/Rates/RateWorker", {
+      const response = await fetch("http://tjob.tryasp.net/api/Worker/Rates/RateEmployer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ workerId, requestId, rate, note })
+        body: JSON.stringify({
+          employerId,
+          requestId: parseInt(requestId),
+          rate,
+          note
+        })
       });
 
-      if (res.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "تم الإرسال",
-          text: "تم إرسال التقييم بنجاح",
-          confirmButtonText: "حسناً",
-          position: "top-end",
-          toast: true,
-          timer: 3000,
-          showConfirmButton: false,
-        });
-
-        document.getElementById("ratingForm").reset();
-        document.querySelectorAll("#starRating i").forEach(star => {
-          star.classList.remove("fa-solid", "text-warning");
-          star.classList.add("fa-regular", "text-secondary");
-        });
+      if (response.status === 400) {
+        const text = await response.text();
+        if (text.includes("تم التقييم") || text.includes("already rated")) {
+          Swal.fire("تنبيه", "لقد قمت بتقييم هذا صاحب العمل مسبقًا.", "info");
+        } else {
+          Swal.fire("خطأ", text || "فشل في إرسال التقييم", "error");
+        }
+      } else if (!response.ok) {
+        throw new Error("فشل في إرسال التقييم");
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "فشل الإرسال",
-          text: "حدث خطأ أثناء إرسال التقييم"
+        Swal.fire("تم", "تم إرسال التقييم بنجاح", "success").then(() => {
+          window.location.href = "./worker-completed-jobs.html";
         });
       }
-    } catch (err) {
-      console.error(err);
-      Swal.fire({
-        icon: "error",
-        title: "خطأ في الاتصال",
-        text: "تعذر الاتصال بالخادم"
-      });
+
+    } catch (error) {
+      console.error("❌ خطأ أثناء التقييم:", error);
+      Swal.fire("خطأ", "حدث خطأ أثناء إرسال التقييم", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "إرسال التقييم";
     }
   });
 });

@@ -40,48 +40,23 @@
       <div class="p-3 border-bottom text-center">
         <h4 class="fw-bold text-primary mb-0">محادثاتي</h4>
       </div>
-      <ul class="list-unstyled flex-grow-1 overflow-auto">
-        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
-          <div class="flex-grow-1">
-            <h6 class="mb-0 fw-semibold">احمد علي</h6>
-          </div>
-        </li>
-        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
-          <img src="https://randomuser.me/api/portraits/men/30.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
-          <div class="flex-grow-1">
-            <h6 class="mb-0 fw-semibold">محمد علي</h6>
-          </div>
-        </li>
-        <li class="list-group-item list-group-item-action py-3 px-3 d-flex align-items-center">
-          <img src="https://randomuser.me/api/portraits/men/39.jpg" class="rounded-circle me-3 border border-2" width="55" height="55">
-          <div class="flex-grow-1">
-            <h6 class="mb-0 fw-semibold">خالد محمود</h6>
-          </div>
-        </li>
+      <ul class="list-unstyled flex-grow-1 overflow-auto" id="chatList">
+        <!-- سيتم تعبئتها من JavaScript -->
       </ul>
     </div>
 
     <!-- نافذة المحادثة -->
     <div class="col-md-8 col-lg-9 d-flex flex-column bg-light">
       <div class="p-3 bg-primary text-white d-flex align-items-center">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3 border border-2" width="40" height="40">
-        <h5 class="mb-0 fw-bold">احمد علي</h5>
+        <img id="chatImage" src="" class="rounded-circle me-3 border border-2" width="40" height="40">
+        <h5 class="mb-0 fw-bold" id="chatName">اختر محادثة</h5>
       </div>
-      <div class="p-3 overflow-auto flex-grow-1">
-        <div class="d-flex justify-content-start mb-3">
-          <div class="bg-white rounded shadow-sm p-2 px-3 ">مرحبًا، هل أنت متاح للعمل الآن؟</div>
-        </div>
-        <div class="d-flex justify-content-end mb-3">
-          <div class="bg-success text-white rounded shadow-sm p-2 px-3">نعم، أنا متاح ويمكنني البدء فورًا.</div>
-        </div>
-        <div class="d-flex justify-content-start mb-3">
-          <div class="bg-white rounded shadow-sm p-2 px-3 ">رائع، سنبدأ في الساعة 10 صباحًا.</div>
-        </div>
+      <div class="p-3 overflow-auto flex-grow-1" id="chatBox">
+        <!-- سيتم تعبئة الرسائل من JavaScript -->
       </div>
-      <form class="border-top bg-white p-3">
+      <form class="border-top bg-white p-3" id="chatForm">
         <div class="input-group">
-          <input type="text" class="form-control bg-light border-0 rounded-pill ps-3" placeholder="اكتب رسالتك..." required>
+          <input type="text" class="form-control bg-light border-0 rounded-pill ps-3" placeholder="اكتب رسالتك..." id="chatInput" required>
           <button type="submit" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center ms-2">
             <i class="fas fa-paper-plane"></i>
           </button>
@@ -116,5 +91,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/messages.js"></script>
+
 </body>
 </html>
