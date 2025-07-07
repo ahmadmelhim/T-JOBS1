@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobTitle = params.get("jobTitle");
 
   // عرض اسم صاحب العمل والوظيفة إن وجدوا
-  const nameElement = document.getElementById("employerName");
+const nameElement = document.getElementById("workerName");
+  const jobElement = document.getElementById("jobTitle");
   if (employerName && nameElement) nameElement.textContent = employerName;
   if (jobTitle && jobElement) jobElement.textContent = jobTitle;
 

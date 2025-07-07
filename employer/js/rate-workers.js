@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitBtn = form.querySelector("button[type='submit']");
     submitBtn.disabled = true;
     submitBtn.textContent = "جاري الإرسال...";
-
     if (!workerId || !requestId || isNaN(rate) || rate <= 0) {
       Swal.fire("خطأ", "يجب تعبئة جميع الحقول بشكل صحيح", "error");
       submitBtn.disabled = false;

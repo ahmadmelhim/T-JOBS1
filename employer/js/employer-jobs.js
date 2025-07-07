@@ -10,10 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function translateStatus(status) {
     switch (status) {
-      case 0: return { text: "متاحة", class: "bg-primary" };
-      case 1: return { text: "مقبولة", class: "bg-success" };
-      case 2: return { text: "مرفوضة", class: "bg-danger" };
-      case 3: return { text: "مكتملة", class: "bg-secondary" };
+      case 1: return { text: "متاحة", class: "bg-success" };
       default: return { text: "منهية  ", class: "bg-danger" };
     }
   }
