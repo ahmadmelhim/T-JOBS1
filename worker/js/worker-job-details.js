@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("jobDate").textContent = job.dateTime.split("T")[0];
     document.getElementById("jobPrice").textContent = `${job.price} شيقل / يوم`;
     document.getElementById("jobType").textContent = job.requestTypeName;
+    negotiateBtn.href =`../chat/messages.html?id=${job.applicationUserId}&&FirstName=${job.applicationUserFirstName}&&LastName=${job.applicationUserLastName}`;
+
 
   } catch (err) {
     console.error(err);

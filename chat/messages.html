@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <title>المحادثات</title>
@@ -10,88 +11,80 @@
   <link rel="stylesheet" href="../assert/css/base.css">
   <link rel="stylesheet" href="../assert/css/main.css">
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-white fixed-top">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand" href="../index.html">
-      <img src="../assert/image/logo.png" alt="شعار الموقع" class="img-fluid" >
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto gap-2">
-        <li class="nav-item"><a class="nav-link" href="./messages.html"><i class="fa-solid fa-message"></i> المحادثات </a></li>
-        <li class="nav-item"><a class="nav-link" href="./chatbot.html"><i class="fa-solid fa-robot"></i> الشات بوت</a></li>
-        <li class="nav-item"><a class="nav-link" href="./notifications.html"><i class="fa-solid fa-bell"></i> الإشعارات</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  <!-- Navbar -->
+  <nav class="bg-mainColor shadow fixed-top">
+    <div id="navbar" class="container"></div>
+  </nav>
 
-<!-- محتوى الصفحة -->
-<div class="container-fluid pt-5 mt-5">
-  <div class="row g-0 shadow mx-3 rounded overflow-hidden" style="height: calc(100vh - 120px);">
 
-    <!-- القائمة الجانبية للمحادثات -->
-    <div class="col-md-4 col-lg-3 bg-white border-end d-flex flex-column">
-      <div class="p-3 border-bottom text-center">
-        <h4 class="fw-bold text-primary mb-0">محادثاتي</h4>
-      </div>
-      <ul class="list-unstyled flex-grow-1 overflow-auto" id="chatList">
-        <!-- سيتم تعبئتها من JavaScript -->
-      </ul>
-    </div>
+  <!-- محتوى الصفحة -->
+  <div class="container-fluid pt-5 mt-5">
+    <div class="row g-0 shadow mx-3 rounded overflow-hidden" style="height: calc(100vh - 120px);">
 
-    <!-- نافذة المحادثة -->
-    <div class="col-md-8 col-lg-9 d-flex flex-column bg-light">
-      <div class="p-3 bg-primary text-white d-flex align-items-center">
-        <img id="chatImage" src="" class="rounded-circle me-3 border border-2" width="40" height="40">
-        <h5 class="mb-0 fw-bold" id="chatName">اختر محادثة</h5>
-      </div>
-      <div class="p-3 overflow-auto flex-grow-1" id="chatBox">
-        <!-- سيتم تعبئة الرسائل من JavaScript -->
-      </div>
-      <form class="border-top bg-white p-3" id="chatForm">
-        <div class="input-group">
-          <input type="text" class="form-control bg-light border-0 rounded-pill ps-3" placeholder="اكتب رسالتك..." id="chatInput" required>
-          <button type="submit" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center ms-2">
-            <i class="fas fa-paper-plane"></i>
-          </button>
+      <!-- القائمة الجانبية للمحادثات -->
+      <div class="col-md-4 col-lg-3 bg-white border-end d-flex flex-column">
+        <div class="p-3 border-bottom text-center">
+          <h4 class="fw-bold mb-0">الدردشات</h4>
         </div>
-      </form>
+        <ul class="list-unstyled flex-grow-1 overflow-auto" id="chatList">
+          <!-- سيتم تعبئتها من JavaScript -->
+        </ul>
+      </div>
+
+      <!-- نافذة المحادثة -->
+      <div class="col-md-8 col-lg-9 d-flex flex-column bg-light">
+        <div class="p-3 bg-white border-bottom d-flex align-items-center d-none" id="titleChat">
+          <img id="chatImage" src="" class="rounded-circle me-3 border border-1" width="40" height="40">
+          <h5 class="mb-0 fw-bold" id="chatName"> </h5>
+        </div>
+        <div class="p-3 overflow-y-scroll flex-grow-1" id="chatBox">
+
+        </div>
+        <form class="border-top bg-white p-3" id="chatForm">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 rounded-pill ps-3" placeholder="اكتب رسالتك..."
+              id="chatInput" required>
+            <button type="submit"
+              class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center ms-2">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- الفوتر -->
-<footer class="bg-secColor pt-5 pb-3 mt-5">
-  <div class="container">
-    <div class="row text-center text-md-start align-items-center justify-content-between">
-      <div class="col-12 col-md-4 mb-3 mb-md-0">
-        <img src="../assert/image/logo.png" class="img-fluid w-50" alt="شعار">
-      </div>
-      <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
-        <p class="mb-0">رقم التواصل<br>0595569887</p>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+  <!-- الفوتر -->
+  <footer class="bg-secColor pt-5 pb-3 mt-5">
+    <div class="container">
+      <div class="row text-center text-md-start align-items-center justify-content-between">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+          <img src="../assert/image/logo.png" class="img-fluid w-50" alt="شعار">
+        </div>
+        <div class="col-12 col-md-4 mb-3 mb-md-0 text-center">
+          <p class="mb-0">رقم التواصل<br>0595569887</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
         </div>
       </div>
+      <hr class="my-4">
+      <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
     </div>
-    <hr class="my-4">
-    <p class="text-center mb-0">&copy; 2025 T-JOBS - جميع الحقوق محفوظة</p>
-  </div>
-</footer>
+  </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./js/messages.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./../assert/js/navbar.js"></script>
+  <script src="./js/messages.js"></script>
 </body>
 </html>

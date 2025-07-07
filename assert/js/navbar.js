@@ -45,6 +45,24 @@ let navbarHTML = `
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="./../chat/notifications.html">
+                <i class="fa-solid fa-bell"></i> الاشعارات 
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+             <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="./../chat/messages.html">
+               <i class="fa-solid fa-comment-dots"></i> الدردشات 
+              </a>
+            </li>
+             <li><hr class="dropdown-divider"></li>
+             <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="./../chat/chatbot.html">
+               <i class="fa-solid fa-comment-dots"></i> التشات بوت 
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
               <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="#" onclick="logout()">
                 <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
               </a>
@@ -52,7 +70,8 @@ let navbarHTML = `
           </ul>
         </div>
       </div>
-      `}
+      `
+    }
   </div>
 `;
 
