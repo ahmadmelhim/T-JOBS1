@@ -43,6 +43,17 @@
   justify-content: flex-start;
   margin-bottom: 1rem; 
 }
+ #chat{
+    height: 56vh;
+  }
+#chatBox{
+  height: 56vh;
+
+}
+.bgChat{
+  background-color: rgb(56, 88, 152);
+}
+
 
 .botMessage{
   background-color: rgba(233, 233, 233, 0.5);

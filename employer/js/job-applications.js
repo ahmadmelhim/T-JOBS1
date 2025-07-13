@@ -20,12 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="text-black">${index + 1}</td>
-          <td class="text-black">${app.applicationUserFirstName} ${app.applicationUserLastName}</td>
-          <td class="text-black">${app.requestTitle}</td>
-          <td class="text-black">${app.applicationUserEmail}</td>
-          <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
-          <td class="text-black">${getStatusText(status)}</td>
+            <td class="text-black">${index + 1}</td>
+            <td class="text-black">${app.applicationUserFirstName} ${app.applicationUserLastName}</td>
+            <td class="text-black">${app.requestTitle}</td>
+            <td class="text-black">${app.applicationUserEmail}</td>
+            <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
+            <td class="text-black">${app.applicationUserAvgRate ?? "غير متوفر"}</td>
+            <td class="text-black">${getStatusText(status)}</td>
           <td>
             <a href="${app.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
               <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
@@ -41,8 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               </button>
               <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'reject')">
                 <i class="fas fa-times me-1"></i>رفض
-              </button>
-            ` : ""}
+              </button>` : ""} 
+
           </td>
         `;
         tbody.appendChild(tr);

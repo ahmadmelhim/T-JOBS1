@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
 
   async function fetchPastProjects() {
-    const tbody = document.querySelector("tbody"); // يجب تعريفه هنا ليتوفر في try و catch
+    const tbody = document.querySelector("tbody");
     try {
       const response = await fetch("http://tjob.tryasp.net/api/Employer/Requests/PastProject", {
         headers: {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       data.forEach((project, index) => {
         const workerName = `${project.applicationUserFirstName} ${project.applicationUserLastName}`;
         const jobTitle = project.requestTitle;
-        const hasRated = project.workerRate > 0;
+        const hasRated = project.isRated === true;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -28,23 +28,23 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${project.applicationUserEmail}</td>
           <td class="text-black">${project.applyDateTime?.split("T")[0]}</td>
           <td>
-            <a href="${project.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white">
-              <i class="fa-solid fa-file-lines me-1"></i>السيرة الذاتية
+            <a href="profile-view.html?id=${project.userId}" class="btn btn-sm btn-info text-white">
+              <i class="fa-solid fa-eye me-1"></i> عرض الملف
             </a>
           </td>
           <td>
-            ${
-              hasRated
-                ? "<span class='text-success'>تم التقييم</span>"
-                : `<a href="rate-workers.html?requestId=${project.requestId}&userId=${project.applicationUserId}&userName=${encodeURIComponent(workerName)}&jobTitle=${encodeURIComponent(jobTitle)}" class="btn btn-sm btn-warning text-white">
-                    <i class="fa fa-star me-1"></i> تقييم
-                  </a>`
+            ${hasRated
+              ? "<span class='text-success'>تم التقييم</span>"
+              : `<a href="rate-workers.html?requestId=${project.requestId}&userId=${project.userId}&userName=${encodeURIComponent(workerName)}&jobTitle=${encodeURIComponent(jobTitle)}" class="btn btn-sm btn-warning text-white">
+                  <i class="fa fa-star me-1"></i> تقييم
+                </a>`
             }
           </td>
         `;
 
         tbody.appendChild(tr);
       });
+
     } catch (error) {
       console.error("خطأ أثناء تحميل الوظائف:", error);
       if (tbody) {

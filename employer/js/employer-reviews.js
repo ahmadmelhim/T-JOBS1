@@ -1,53 +1,48 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.getElementById("reviewsContainer");
   const token = localStorage.getItem("token");
-  if (!token) return;
-
-  const container = document.querySelector(".row.g-4");
-  container.innerHTML = "";
 
   try {
-    const res = await fetch("http://tjob.tryasp.net/api/Employer/Rates/MyRatings", {
-      headers: { Authorization: `Bearer ${token}` }
+    const response = await fetch("http://tjob.tryasp.net/api/Employer/Rates/ReceivedRatings", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
-    if (!res.ok) throw new Error("فشل في جلب التقييمات");
+    if (!response.ok) throw new Error("فشل في جلب التقييمات");
 
-    const ratings = await res.json();
+    const ratings = await response.json();
 
-    if (!ratings || ratings.length === 0) {
-      container.innerHTML = `<div class="text-center text-muted">لا يوجد تقييمات حتى الآن.</div>`;
+    if (ratings.length === 0) {
+      container.innerHTML = `<p class="text-center text-muted">لا توجد ملاحظات حتى الآن.</p>`;
       return;
     }
 
+    container.innerHTML = "";
     ratings.forEach(rating => {
-      const fullStars = Math.floor(rating.rate || 0);
-      const emptyStars = 5 - fullStars;
-      const starIcons = '<i class="fas fa-star text-warning"></i>'.repeat(fullStars) +
-                        '<i class="far fa-star text-warning"></i>'.repeat(emptyStars);
-
-      const imgSrc = rating.workerImg || "https://i.pravatar.cc/50?u=" + rating.workerName;
-
-      const card = `
-        <div class="col-md-6 col-lg-4">
-          <div class="card border-0 shadow rounded-4 p-3">
-            <div class="d-flex align-items-center mb-2">
-              <img src="${imgSrc}" class="rounded-circle me-3" alt="avatar" width="50" height="50">
-              <div>
-                <h5 class="mb-0">${rating.workerName || "عامل مجهول"}</h5>
-                <small class="text-muted">${rating.workerJob || ""}</small>
-              </div>
+      const stars = "★".repeat(rating.rate) + "☆".repeat(5 - rating.rate);
+      const date = new Date(rating.ratedAt).toLocaleDateString("ar-EG");
+      const card = document.createElement("div");
+      card.className = "col-md-6";
+      card.innerHTML = `
+        <div class="card shadow-lg border-0 rounded-4">
+          <div class="card-body d-flex gap-3 align-items-start">
+            <img src="${rating.workerImg}" alt="صورة العامل" class="rounded-circle border" style="width: 60px; height: 60px; object-fit: cover;">
+            <div class="flex-grow-1">
+              <h5 class="card-title mb-1 text-primary">${rating.workerName || "عامل غير معروف"}</h5>
+              <p class="mb-1 text-secondary"><strong>الوظيفة:</strong> ${rating.jobTitle || "غير محدد"}</p>
+              <p class="mb-1"><strong>التقييم:</strong> <span style="color: gold;">${stars}</span></p>
+              <p class="mb-2"><strong>الملاحظة:</strong> ${rating.note || "لا يوجد تعليق"}</p>
+              <p class="text-muted small text-end">${date}</p>
             </div>
-            <div class="mb-2 text-end">${starIcons}</div>
-            <p class="bg-light rounded p-3 text-black-50">${rating.note || "بدون تعليق"}</p>
-            <div class="text-end text-muted small">${rating.ratedAt || ""}</div>
           </div>
         </div>
       `;
-      container.insertAdjacentHTML("beforeend", card);
+      container.appendChild(card);
     });
 
-  } catch (err) {
-    console.error("❌ خطأ أثناء تحميل التقييمات:", err);
-    container.innerHTML = `<div class="text-center text-danger">حدث خطأ أثناء تحميل التقييمات.</div>`;
+  } catch (error) {
+    console.error("خطأ في تحميل التقييمات:", error);
+    container.innerHTML = `<p class="text-danger text-center">حدث خطأ أثناء تحميل الملاحظات.</p>`;
   }
 });
