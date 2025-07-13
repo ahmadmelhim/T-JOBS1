@@ -20,16 +20,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td class="text-black">${index + 1}</td>
-            <td class="text-black">${app.applicationUserFirstName} ${app.applicationUserLastName}</td>
-            <td class="text-black">${app.requestTitle}</td>
-            <td class="text-black">${app.applicationUserEmail}</td>
-            <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
-            <td class="text-black">${app.applicationUserAvgRate ?? "غير متوفر"}</td>
-            <td class="text-black">${getStatusText(status)}</td>
+          <td class="text-black">${index + 1}</td>
+          <td class="text-black">${app.applicationUserFirstName} ${app.applicationUserLastName}</td>
+          <td class="text-black">${app.requestTitle}</td>
+          <td class="text-black">${app.applicationUserEmail}</td>
+          <td class="text-black">${app.applyDateTime?.split("T")[0]}</td>
+          <td class="text-black">${app.applicationUserAvgRate ?? "غير متوفر"}</td>
+          <td class="text-black">${getStatusText(status)}</td>
           <td>
-            <a href="${app.applicationUserFile}" target="_blank" class="btn btn-sm btn-info text-white mb-1">
-              <i class="fas fa-file-alt me-1"></i>السيرة الذاتية
+           
+            <a href="profile-view.html?id=${app.applicationUserId}" class="btn btn-sm btn-primary text-white mb-1">
+              <i class="fas fa-user me-1"></i>عرض الملف الشخصي
             </a><br>
             ${isAccepted && !isCompleted ? `
               <button class="btn btn-sm btn-secondary text-white mt-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'complete')">
@@ -42,8 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </button>
               <button class="btn btn-sm btn-danger text-white mb-1" onclick="handleApplicationAction(${app.requestId}, '${app.applicationUserId}', 'reject')">
                 <i class="fas fa-times me-1"></i>رفض
-              </button>` : ""} 
-
+              </button>` : ""}
           </td>
         `;
         tbody.appendChild(tr);
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         timerProgressBar: true
       });
 
-      await fetchApplications(); // تحديث القائمة تلقائيًا
+      await fetchApplications();
     } catch (error) {
       console.error("خطأ:", error);
       Swal.fire({

@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td class="text-black">${project.applicationUserEmail}</td>
           <td class="text-black">${project.applyDateTime?.split("T")[0]}</td>
           <td>
-            <a href="profile-view.html?id=${project.userId}" class="btn btn-sm btn-info text-white">
-              <i class="fa-solid fa-eye me-1"></i> عرض الملف
+            <a href="profile-view.html?id=${project.applicationUserId}" class="btn btn-sm btn-primary text-white">
+              <i class="fas fa-user me-1"></i>عرض الملف الشخصي
             </a>
           </td>
           <td>
